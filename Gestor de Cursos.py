@@ -1,7 +1,5 @@
 from tkinter import *
-from datetime import datetime
 from PIL import ImageTk,Image
-import random
 
 def start_window():
 
