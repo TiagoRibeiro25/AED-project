@@ -142,19 +142,19 @@ def start_window():
                 if name_letters > 29 or name_letters == 0:          #Máximo 29 caracteres para evitar nomes muito grandes
                     lbl_red1.configure(text='X', fg='red')
                 else:
-                    lbl_red1.configure(text='V', fg='green')
+                    lbl_red1.configure(text='✔', fg='green')
 
                 if email.find('@') == -1 or email.find('.') == -1:  #verifica se o email tem um '@' e um '.'
                     lbl_red2.configure(text='X', fg='red')
                 elif email.rfind('.') < email.find('@'):            #Verifica se o '.' está depois do '@'  (xxxx@xxx.xx)
                     lbl_red2.configure(text='X', fg='red')
                 else:
-                    lbl_red2.configure(text='V', fg='green')
+                    lbl_red2.configure(text='✔', fg='green')
 
                 if pw.count(' ') == len(pw) or pw == '':            #Verificar se existe uma senha e se a senha tem alguma letra ou número (nao seja so espaços)
                     lbl_red3.configure(text='X', fg='red')
                 else:
-                    lbl_red3.configure(text='V', fg='green')
+                    lbl_red3.configure(text='✔', fg='green')
                                  
 
             #Botão para verificar e criar conta
