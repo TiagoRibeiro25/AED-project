@@ -120,7 +120,7 @@ def start_window():
             user_type_selected.set('user')   #Por predefinição, o tipo de usuário escolhido será do tipo "user"
             #user_type_selected.get() - para pegar o valor user/admin
 
-            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Helvetica', 9), background='navajo white')
+            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Helvetica', 9), background='navajo white')
             lbl_info.place(x = 260, y = 20)
 
 
