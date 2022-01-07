@@ -1,0 +1,2 @@
+0;Username;email;password;type of user, register date
+1;Tiago Ribeiro;40210462@esmad.ipp.pt;2525;admin01/07/2022

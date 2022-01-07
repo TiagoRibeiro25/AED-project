@@ -1,5 +1,5 @@
-from os import set_inheritable
 from tkinter import *
+from tkinter import messagebox
 from datetime import datetime
 from PIL import ImageTk,Image
 
@@ -26,34 +26,34 @@ def start_window():
             ctn_canvas.create_image(240,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Helvetica', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
 
             #Painel da direita (log-In)
             painel_log_in = PanedWindow(painel_inicial, width = 260, height= 310, background='white')
             painel_log_in.place(x = 500, y = 10)
 
-            lbl_Log_In = Label(painel_log_in, text = 'Log In', fg='black', font = ('Helvetica', 20), background='white')
+            lbl_Log_In = Label(painel_log_in, text = 'Log In', fg='black', font = ('Arial', 20), background='white')
             lbl_Log_In.place(x = 90, y = 0)
 
             #Username
-            lbl_name = Label(painel_log_in, text = 'Name:', fg='black', font = ('Helvetica', 15), background='white')
+            lbl_name = Label(painel_log_in, text = 'Name:', fg='black', font = ('Arial', 15), background='white')
             lbl_name.place(x = 10, y = 60)
             Entry_name = Entry(painel_log_in, width = 27, background = 'white')
             Entry_name.place(x = 75, y = 66)
 
             #Password
-            lbl_pw = Label(painel_log_in, text = 'Password:', fg='black', font = ('Helvetica', 14), background='white')
+            lbl_pw = Label(painel_log_in, text = 'Password:', fg='black', font = ('Arial', 14), background='white')
             lbl_pw.place(x = 10, y = 95)
             Entry_pw = Entry(painel_log_in, width = 22, background = 'white', show='*')
             Entry_pw.place(x = 105, y = 101)
 
             #botao next
-            btn_next = Button(painel_log_in, text = 'Next', font = ('Helvetica', 15), fg = 'white', relief='groove', background = 'green', width=15)
+            btn_next = Button(painel_log_in, text = 'Next', font = ('Arial', 15), fg = 'white', relief='groove', background = 'green', width=15)
             btn_next.place (x = 44,y = 160)
 
             #botao caso não tenha conta
-            btn_no_account = Button(painel_log_in, text = "Don't have an account? Click here", font = ('Helvetica', 10), fg = 'blue', relief='flat', background = 'white', command=Sign_Up)
+            btn_no_account = Button(painel_log_in, text = "Don't have an account? Click here", font = ('Arial', 10), fg = 'blue', relief='flat', background = 'white', command=Sign_Up)
             btn_no_account.place (x = 25,y = 270)
 
 
@@ -68,30 +68,30 @@ def start_window():
             ctn_canvas.create_image(240,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Helvetica', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
 
             #Painel da direita (Sign-up)
             painel_sign_up = PanedWindow(painel_inicial, width = 260, height= 310, background='white')
             painel_sign_up.place(x = 500, y = 10)
 
-            lbl_Log_In = Label(painel_sign_up, text = 'Sign Up', fg='black', font = ('Helvetica', 20), background='white')
+            lbl_Log_In = Label(painel_sign_up, text = 'Sign Up', fg='black', font = ('Arial', 20), background='white')
             lbl_Log_In.place(x = 85, y = 0)
 
             #Username
-            lbl_name = Label(painel_sign_up, text = 'Name:', fg='black', font = ('Helvetica', 15), background='white')
+            lbl_name = Label(painel_sign_up, text = 'Name:', fg='black', font = ('Arial', 15), background='white')
             lbl_name.place(x = 10, y = 60)
             Entry_name = Entry(painel_sign_up, width = 27, background = 'white')
             Entry_name.place(x = 75, y = 66)
 
             #Email
-            lbl_email = Label(painel_sign_up, text = 'Email:', fg='black', font = ('Helvetica', 14), background='white')
+            lbl_email = Label(painel_sign_up, text = 'Email:', fg='black', font = ('Arial', 14), background='white')
             lbl_email.place(x = 10, y = 95)
             Entry_email = Entry(painel_sign_up, width = 27, background = 'white')
             Entry_email.place(x = 75, y = 101)
 
             #Password
-            lbl_pw = Label(painel_sign_up, text = 'Password:', fg='black', font = ('Helvetica', 14), background='white')
+            lbl_pw = Label(painel_sign_up, text = 'Password:', fg='black', font = ('Arial', 14), background='white')
             lbl_pw.place(x = 10, y = 130)
             Entry_pw = Entry(painel_sign_up, width = 22, background = 'white', show='*')
             Entry_pw.place(x = 105, y = 136)
@@ -105,64 +105,116 @@ def start_window():
                     Entry_pw.configure(show='*')
 
             val = IntVar(0)    
-            btn_pw_visible = Checkbutton(painel_sign_up, text = "Show Password", font = ('Helvetica', 7), background = 'white', variable= val, command=show_pw)
+            btn_pw_visible = Checkbutton(painel_sign_up, text = "Show Password", font = ('Arial', 7), background = 'white', variable= val, command=show_pw)
             btn_pw_visible.place (x = 10,y = 155)
 
             #Tipo de usuário (user/admin)
-            lbl_user_type = Label(painel_sign_up, text = 'Choose which type of user:', fg='black', font = ('Helvetica', 12), background='white')
+            lbl_user_type = Label(painel_sign_up, text = 'Choose which type of user:', fg='black', font = ('Arial', 12), background='white')
             lbl_user_type.place(x = 10, y = 185)
 
             user_type_selected = StringVar()
-            User = Radiobutton(painel_sign_up, text='User', font = ('Helvetica', 10), background = 'white', variable= user_type_selected, value='user')
-            Admin = Radiobutton(painel_sign_up, text='Admin', font = ('Helvetica', 10), background = 'white', variable= user_type_selected, value='admin')
+            User = Radiobutton(painel_sign_up, text='User', font = ('Arial', 10), background = 'white', variable= user_type_selected, value='user')
+            Admin = Radiobutton(painel_sign_up, text='Admin', font = ('Arial', 10), background = 'white', variable= user_type_selected, value='admin')
             User.place(x = 10, y = 210)
             Admin.place(x = 150, y = 210)
             user_type_selected.set('user')   #Por predefinição, o tipo de usuário escolhido será do tipo "user"
             #user_type_selected.get() - para pegar o valor user/admin
 
-            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Helvetica', 9), background='navajo white')
+            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Arial', 9), background='navajo white')
             lbl_info.place(x = 260, y = 20)
 
 
             #Cruzes ao lado direito de cada linha (user,email,password). Caso as informações tenham erros, a funçao verify irá torná-la visivel
-            lbl_red1 = Label(painel_sign_up, text='X', fg='white', font = ('Helvetica', 10), background='white',height=1)
-            lbl_red2 = Label(painel_sign_up, text='X', fg='white', font = ('Helvetica', 10), background='white',height=1)
-            lbl_red3 = Label(painel_sign_up, text='X', fg='white', font = ('Helvetica', 10), background='white',height=1)
+            lbl_red1 = Label(painel_sign_up, text='X', fg='white', font = ('Arial', 10), background='white',height=1)
+            lbl_red2 = Label(painel_sign_up, text='X', fg='white', font = ('Arial', 10), background='white',height=1)
+            lbl_red3 = Label(painel_sign_up, text='X', fg='white', font = ('Arial', 10), background='white',height=1)
             lbl_red1.place(x = 242, y = 65)
             lbl_red2.place(x = 242, y = 100)
             lbl_red3.place(x = 242, y = 135)
-            
 
+            #FUnçao que verifica os dados introduzidos
             def verify():
-                name_letters = len(Entry_name.get()) #Numero de caracteres do nome
-                email =Entry_email.get()             #Email
-                pw = Entry_pw.get()
-                i = 0
+                name_correct = 0
+                email_correct = 0
+                pw_correct = 0
 
+                name = Entry_name.get()              #nome
+                name_letters = len(name)             #Numero de caracteres do nome
+                email =Entry_email.get()             #Email
+                pw = Entry_pw.get()                  #Password
+
+                #name
                 if name_letters > 29 or name_letters == 0:          #Máximo 29 caracteres para evitar nomes muito grandes
+                    lbl_red1.configure(text='X', fg='red')
+                elif name.count(' ') == name_letters:                  #Verificar se o nome tem alguma letra/número (não seja so espaços)
                     lbl_red1.configure(text='X', fg='red')
                 else:
                     lbl_red1.configure(text='✔', fg='green')
-
+                    name_correct = 1
+                    Entry_name.configure(state=DISABLED)
+                    
+                #email
                 if email.find('@') == -1 or email.find('.') == -1:  #verifica se o email tem um '@' e um '.'
                     lbl_red2.configure(text='X', fg='red')
                 elif email.rfind('.') < email.find('@'):            #Verifica se o '.' está depois do '@'  (xxxx@xxx.xx)
-                    lbl_red2.configure(text='X', fg='red')
+                    lbl_red2.configure(text='X', fg='red')          #                                           ^   ^
                 else:
                     lbl_red2.configure(text='✔', fg='green')
+                    email_correct = 1
+                    Entry_email.configure(state=DISABLED)
 
+                #password
                 if pw.count(' ') == len(pw) or pw == '':            #Verificar se existe uma senha e se a senha tem alguma letra ou número (nao seja so espaços)
                     lbl_red3.configure(text='X', fg='red')
                 else:
                     lbl_red3.configure(text='✔', fg='green')
+                    pw_correct = 1
+                    Entry_pw.configure(state=DISABLED)
+
+
+                #REALIZAR O REGISTO!
+                if name_correct == 1 and email_correct == 1 and pw_correct == 1:
+                    t = datetime.now().date()
+                    date = t.strftime('%m/%d/%Y')
+                    messagebox.showinfo(
+                        title="Sucess", message="Your account has been created!")
+                    with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                        cont_line=f.readlines()
+                    #ID, Nome, Email, Senha, Tipo de user, Data de registo
+                    save = str(len(cont_line)) + 'j' + Entry_name.get() + 'j' + Entry_email.get() + 'j' + Entry_pw.get() + 'j' + user_type_selected.get() + 'j' + date + "\n"
+                    with open("data/utilizadores.txt", "a", encoding="UTF-8") as f: 
+                        f.write(save)  
                                  
+            #Botão reset de dados 
+            #(caso o utilizador tenha inserido um nome/email/senha válida mas queira alterar)
+            #Mostrar password
+            def reset_data():
+                reset_info = reset.get()
+                if reset_info == 1:
+                    Entry_name.configure(state=NORMAL)
+                    Entry_name.delete(0, END)
+                    lbl_red1.configure(fg='white')
+
+                    Entry_email.configure(state=NORMAL)
+                    Entry_email.delete(0, END)
+                    lbl_red2.configure(fg='white')
+
+                    Entry_pw.configure(state=NORMAL)
+                    Entry_pw.delete(0, END)
+                    lbl_red3.configure(fg='white')
+
+                    reset.set(0)
+
+            reset = IntVar(0)    
+            btn_pw_visible = Checkbutton(painel_sign_up, text = "Reset data", font = ('Arial', 7), fg='red', background = 'white', variable= reset, command=reset_data)
+            btn_pw_visible.place (x = 170,y = 155)
 
             #Botão para verificar e criar conta
-            btn_create_account = Button(painel_sign_up, text = 'Create Account', font = ('Helvetica', 10), fg = 'white', relief='groove', background = 'green', width=15, command=verify)
+            btn_create_account = Button(painel_sign_up, text = 'Create Account', font = ('Arial', 10), fg = 'white', relief='groove', background = 'green', width=15, command=verify)
             btn_create_account.place (x = 65,y = 240)
 
             #botao caso não tenha conta
-            btn_no_account = Button(painel_sign_up, text = "Already have an account? Click here", font = ('Helvetica', 10), fg = 'blue', relief='flat', background = 'white', command=Log_In)
+            btn_no_account = Button(painel_sign_up, text = "Already have an account? Click here", font = ('Arial', 10), fg = 'blue', relief='flat', background = 'white', command=Log_In)
             btn_no_account.place (x = 20,y = 270)
 
 
@@ -177,17 +229,23 @@ def start_window():
             ctn_canvas.create_image(240,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Helvetica', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
+
+            #Informação sobre o trabalho
+            lbl_info1 = Label(painel_inicial, text = 'TSIW', fg='black', font = ('Arial', 22), background='navajo white')
+            lbl_info2 = Label(painel_inicial, text = 'AED Project\n2021-2022', fg='black', font = ('Arial', 18), background='navajo white')
+            lbl_info1.place(x = 320, y = 50)
+            lbl_info2.place(x = 294, y = 80)
 
             #Painel da direita (Ficha-Técnica)
             painel_log_in = PanedWindow(painel_inicial, width = 260, height= 310, background='white')
             painel_log_in.place(x = 500, y = 10)
 
-            lbl_Log_In = Label(painel_log_in, text = 'Made by', fg='black', font = ('Helvetica', 20), background='white')
+            lbl_Log_In = Label(painel_log_in, text = 'Made by', fg='black', font = ('Arial', 20), background='white')
             lbl_Log_In.place(x = 80, y = 0)
 
-            lbl_info1 = Label(painel_log_in, text = 'Tiago Ribeiro\nnº 40210462\n\nNuno Mendonça\nnº 40210260\n\nJosé Pedro\nnº 40210276', fg='black', font = ('Helvetica', 18), background='white')
+            lbl_info1 = Label(painel_log_in, text = 'Tiago Ribeiro\nnº 40210462\n\nNuno Mendonça\nnº 40210260\n\nJosé Pedro\nnº 40210276', fg='black', font = ('Arial', 18), background='white')
             lbl_info1.place(x = 40, y = 50)
 
 
@@ -204,17 +262,17 @@ def start_window():
         ctn_canvas.create_image(380,170, image = img)
 
         #Texto Welcome
-        lbl_welcome = Label(painel_inicial, text = 'Welcome', fg='goldenrod', font = ('Helvetica', 23), background = 'white')
+        lbl_welcome = Label(painel_inicial, text = 'Welcome', fg='goldenrod', font = ('Arial', 23), background = 'white')
         lbl_welcome.place(x = 315, y = 97)
 
         #Botões
-        btn_Log_In = Button(painel_inicial, text = 'Log In', font = ('Helvetica', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Log_In)
+        btn_Log_In = Button(painel_inicial, text = 'Log In', font = ('Arial', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Log_In)
         btn_Log_In.place (x = 260,y = 157)
 
-        btn_Sign_Up = Button(painel_inicial, text = 'Sign Up', font = ('Helvetica', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Sign_Up)
+        btn_Sign_Up = Button(painel_inicial, text = 'Sign Up', font = ('Arial', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Sign_Up)
         btn_Sign_Up.place (x = 390,y = 157)
 
-        btn_Exit = Button(painel_inicial, text = 'Exit', font = ('Helvetica', 15), fg = 'black', relief='groove', background = 'red', width=10, height=1, command = start_window.destroy)
+        btn_Exit = Button(painel_inicial, text = 'Exit', font = ('Arial', 15), fg = 'black', relief='groove', background = 'red', width=10, height=1, command = start_window.destroy)
         btn_Exit.place (x = 320,y = 207)
 
         #Botão de informação adicional (escondido)
