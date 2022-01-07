@@ -189,7 +189,7 @@ def start_window():
                 #REALIZAR O REGISTO!
                 if name_correct == 1 and email_correct == 1 and pw_correct == 1:
                     t = datetime.now().date()
-                    date = t.strftime('%m/%d/%Y')
+                    date = t.strftime('%d/%m/%Y')
                     messagebox.showinfo(
                         title="Sucess", message="Your account has been created!")
                     with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
