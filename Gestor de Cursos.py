@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from datetime import datetime
 from PIL import ImageTk,Image
+import main_menu
 
 def start_window():
 
@@ -51,13 +52,14 @@ def start_window():
             def verify():
                 global user_number
                 verified = 0
-                with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                with open('data/utilizadores.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")
                         if Entry_name.get() == param[1] and Entry_pw.get() == param[3]:
                             verified = 1
                             user_number = param[0]
                             start_window.destroy()
+                            main_menu.main_menu(user_number)
                     if verified == 0:
                         messagebox.showerror(
                             title="Warning!", message="The username or password are incorrect!")
@@ -197,7 +199,7 @@ def start_window():
                     with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
                         cont_line=f.readlines()
                     #ID, Nome, Email, Senha, Tipo de user, Data de registo
-                    save = str(len(cont_line)) + ';' + Entry_name.get() + ';' + Entry_email.get() + ';' + Entry_pw.get() + ';' + user_type_selected.get() + ';' + date + "\n"
+                    save = str(len(cont_line)) + ';' + Entry_name.get() + ';' + Entry_email.get() + ';' + Entry_pw.get() + ';' + user_type_selected.get() + ';' + date + ';' + "\n"
                     with open("data/utilizadores.txt", "a", encoding="UTF-8") as f: 
                         f.write(save)  
                     
