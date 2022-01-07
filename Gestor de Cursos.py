@@ -115,8 +115,10 @@ def start_window():
                 pw_info = val.get()
                 if pw_info == 1:
                     Entry_pw.configure(show='')
+                    Entry_pw.configure(state=DISABLED)
                 if pw_info == 0:
                     Entry_pw.configure(show='*')
+                    Entry_pw.configure(state=NORMAL)
 
             val = IntVar(0)    
             btn_pw_visible = Checkbutton(painel_sign_up, text = "Show Password", font = ('Arial', 7), background = 'white', variable= val, command=show_pw)
@@ -203,7 +205,6 @@ def start_window():
                                  
             #Botão reset de dados 
             #(caso o utilizador tenha inserido um nome/email/senha válida mas queira alterar)
-            #Mostrar password
             def reset_data():
                 reset_info = reset.get()
                 if reset_info == 1:
