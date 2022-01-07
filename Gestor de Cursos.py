@@ -48,8 +48,22 @@ def start_window():
             Entry_pw = Entry(painel_log_in, width = 22, background = 'white', show='*')
             Entry_pw.place(x = 105, y = 101)
 
+            def verify():
+                global user_number
+                verified = 0
+                with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Entry_name.get() == param[1] and Entry_pw.get() == param[3]:
+                            verified = 1
+                            user_number = param[0]
+                            start_window.destroy()
+                    if verified == 0:
+                        messagebox.showerror(
+                            title="Warning!", message="The username or password are incorrect!")
+
             #botao next
-            btn_next = Button(painel_log_in, text = 'Next', font = ('Arial', 15), fg = 'white', relief='groove', background = 'green', width=15)
+            btn_next = Button(painel_log_in, text = 'Next', font = ('Arial', 15), fg = 'white', relief='groove', background = 'green', width=15, command=verify)
             btn_next.place (x = 44,y = 160)
 
             #botao caso não tenha conta
@@ -181,9 +195,11 @@ def start_window():
                     with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
                         cont_line=f.readlines()
                     #ID, Nome, Email, Senha, Tipo de user, Data de registo
-                    save = str(len(cont_line)) + 'j' + Entry_name.get() + 'j' + Entry_email.get() + 'j' + Entry_pw.get() + 'j' + user_type_selected.get() + 'j' + date + "\n"
+                    save = str(len(cont_line)) + ';' + Entry_name.get() + ';' + Entry_email.get() + ';' + Entry_pw.get() + ';' + user_type_selected.get() + ';' + date + "\n"
                     with open("data/utilizadores.txt", "a", encoding="UTF-8") as f: 
                         f.write(save)  
+                    
+                    btn_create_account.configure(state=DISABLED)
                                  
             #Botão reset de dados 
             #(caso o utilizador tenha inserido um nome/email/senha válida mas queira alterar)
@@ -203,6 +219,7 @@ def start_window():
                     Entry_pw.delete(0, END)
                     lbl_red3.configure(fg='white')
 
+                    btn_create_account.configure(state=NORMAL)
                     reset.set(0)
 
             reset = IntVar(0)    
