@@ -199,7 +199,7 @@ def start_window():
                     with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
                         cont_line=f.readlines()
                     #ID, Nome, Email, Senha, Tipo de user, Data de registo
-                    save = str(len(cont_line)) + ';' + Entry_name.get() + ';' + Entry_email.get() + ';' + Entry_pw.get() + ';' + user_type_selected.get() + ';' + date + ';' + "\n"
+                    save = '\n' + str(len(cont_line)) + ';' + Entry_name.get() + ';' + Entry_email.get() + ';' + Entry_pw.get() + ';' + user_type_selected.get() + ';' + date + ';'
                     with open("data/utilizadores.txt", "a", encoding="UTF-8") as f: 
                         f.write(save)  
                     
