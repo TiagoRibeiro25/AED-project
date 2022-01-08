@@ -19,7 +19,6 @@ def main_menu(usernumber):
         info = linha[int(usernumber)]               #   Dados[0] = User Number |  Dados[3] = Password
         f.close()                                   #   Dados[1] = Name        |  Dados[4] = Admin/User
         Dados = info.split(';')                     #   Dados[2] = Email       |  Dados[5] = Register Date
-        print(Dados)   
     addinfo()
 
     painel_preto_cima = PanedWindow(main_window, width = 1024, height= 50, background='black')
