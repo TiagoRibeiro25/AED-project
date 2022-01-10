@@ -11,23 +11,23 @@ def start_window():
     start_window.geometry('850x400+500+300')
     start_window.resizable(0,0)
     start_window.configure(background='black')
-    start_window.iconbitmap("code.ico")
+    start_window.iconbitmap("hat.ico")
         
     def start():
         start_window.title('Online Courses Manager')
 
         def Log_In():
             start_window.title('Online Courses Manager - Log In')
-            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='navajo white')
+            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='#b9b9b9')
             painel_inicial.place(x = 40, y = 33)
 
             #container Canvas
-            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='navajo white')
+            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='#b9b9b9')
             ctn_canvas.place(x = 0, y = 0)
-            ctn_canvas.create_image(240,170, image = img1)
+            ctn_canvas.create_image(320,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
 
             #Painel da direita (log-In)
@@ -75,16 +75,16 @@ def start_window():
 
         def Sign_Up():
             start_window.title('Online Courses Manager - Sign In')
-            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='navajo white')
+            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='#b9b9b9')
             painel_inicial.place(x = 40, y = 33)
 
             #container Canvas
-            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='navajo white')
+            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='#b9b9b9')
             ctn_canvas.place(x = 0, y = 0)
-            ctn_canvas.create_image(240,170, image = img1)
+            ctn_canvas.create_image(320,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
 
             #Painel da direita (Sign-up)
@@ -138,8 +138,8 @@ def start_window():
             user_type_selected.set('user')   #Por predefinição, o tipo de usuário escolhido será do tipo "user"
             #user_type_selected.get() - para pegar o valor user/admin
 
-            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Arial', 9), background='navajo white')
-            lbl_info.place(x = 260, y = 20)
+            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Arial', 8), background='#b9b9b9')
+            lbl_info.place(x = 313, y = 100)
 
 
             #Cruzes ao lado direito de cada linha (user,email,password). Caso as informações tenham erros, a funçao verify irá torná-la visivel
@@ -240,23 +240,23 @@ def start_window():
 
         def info():
             start_window.title('Online Courses Manager - Extra Info')
-            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='navajo white')
+            painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='#b9b9b9')
             painel_inicial.place(x = 40, y = 33)
 
             #container Canvas
-            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='navajo white')
+            ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='#b9b9b9')
             ctn_canvas.place(x = 0, y = 0)
-            ctn_canvas.create_image(240,170, image = img1)
+            ctn_canvas.create_image(320,170, image = img1)
 
             #Botao voltar
-            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = 'navajo white', width=8, height=1, command=start)
+            btn_voltar = Button(painel_inicial, text = 'back', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
             btn_voltar.place (x = 0,y = 0)
 
             #Informação sobre o trabalho
-            lbl_info1 = Label(painel_inicial, text = 'TSIW', fg='black', font = ('Arial', 22), background='navajo white')
-            lbl_info2 = Label(painel_inicial, text = 'AED Project\n2021-2022', fg='black', font = ('Arial', 18), background='navajo white')
-            lbl_info1.place(x = 320, y = 50)
-            lbl_info2.place(x = 294, y = 80)
+            lbl_info1 = Label(painel_inicial, text = 'TSIW', fg='black', font = ('Arial', 22), background='#b9b9b9')
+            lbl_info2 = Label(painel_inicial, text = 'AED Project\n2021-2022', fg='black', font = ('Arial', 18), background='#b9b9b9')
+            lbl_info1.place(x = 360, y = 100)
+            lbl_info2.place(x = 335, y = 140)
 
             #Painel da direita (Ficha-Técnica)
             painel_log_in = PanedWindow(painel_inicial, width = 260, height= 310, background='white')
@@ -269,35 +269,32 @@ def start_window():
             lbl_info1.place(x = 40, y = 50)
 
 
-        painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='navajo white')
+        painel_inicial = PanedWindow(start_window, width = 770, height= 330, background='#b9b9b9')
         painel_inicial.place(x = 40, y = 33)
 
         #Imagens
-        img = PhotoImage(file = 'Bem-vindo.png')
+        #img = PhotoImage(file = 'Bem-vindo.png')
+        img = PhotoImage(file = 'Welcome.png')
         img1 = PhotoImage(file = 'Cursos-Online.png')
 
         #Canvas
-        ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='navajo white')
+        ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='#b9b9b9')
         ctn_canvas.place(x = 0, y = 0)
         ctn_canvas.create_image(380,170, image = img)
 
-        #Texto Welcome
-        lbl_welcome = Label(painel_inicial, text = 'Welcome', fg='goldenrod', font = ('Arial', 23), background = 'white')
-        lbl_welcome.place(x = 315, y = 97)
-
         #Botões
-        btn_Log_In = Button(painel_inicial, text = 'Log In', font = ('Arial', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Log_In)
-        btn_Log_In.place (x = 260,y = 157)
+        btn_Log_In = Button(painel_inicial, text = 'Log In', font = ('Arial', 11), fg = 'white', relief='groove', background = 'black', width=10, height=1, command=Log_In)
+        btn_Log_In.place (x = 215,y = 160)
 
-        btn_Sign_Up = Button(painel_inicial, text = 'Sign Up', font = ('Arial', 15), fg = 'black', relief='groove', background = 'SkyBlue2', width=10, height=1, command=Sign_Up)
-        btn_Sign_Up.place (x = 390,y = 157)
+        btn_Sign_Up = Button(painel_inicial, text = 'Sign Up', font = ('Arial', 11), fg = 'white', relief='groove', background = 'black', width=10, height=1, command=Sign_Up)
+        btn_Sign_Up.place (x = 445,y = 160)
 
-        btn_Exit = Button(painel_inicial, text = 'Exit', font = ('Arial', 15), fg = 'black', relief='groove', background = 'red', width=10, height=1, command = start_window.destroy)
-        btn_Exit.place (x = 320,y = 207)
+        btn_Exit = Button(painel_inicial, text = 'Exit', font = ('Arial', 9), fg = 'black', relief='groove', background = 'white', width=10, height=1, command = start_window.destroy)
+        btn_Exit.place (x = 338,y = 232)
 
         #Botão de informação adicional (escondido)
-        btn_info = Button(painel_inicial, fg = 'black', background = 'white', relief = 'flat', bitmap = 'info', width=40, height=40, command = info)
-        btn_info.place (x = 170,y = 230)
+        btn_info = Button(painel_inicial, fg = 'black', background = '#b9b9b9', relief = 'flat', bitmap = 'info', width=20, height=20, command = info)
+        btn_info.place (x = 205,y = 246)
 
         start_window.mainloop()  #event listening loop by calling the mainloop()
 
