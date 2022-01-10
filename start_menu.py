@@ -138,7 +138,7 @@ def start_window():
             user_type_selected.set('user')   #Por predefinição, o tipo de usuário escolhido será do tipo "user"
             #user_type_selected.get() - para pegar o valor user/admin
 
-            lbl_info = Label(painel_inicial, text="Username - can't exceed 29 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Arial', 8), background='#b9b9b9')
+            lbl_info = Label(painel_inicial, text="Username - can't exceed 20 letters\n\nEmail - must be a valid\n\nPassword - must have at least\n a letter/number\n\nUser type - Only one can be selected\ndefault selected - User", fg='black', font = ('Arial', 8), background='#b9b9b9')
             lbl_info.place(x = 313, y = 100)
 
 
@@ -162,7 +162,7 @@ def start_window():
                 pw = Entry_pw.get()                  #Password
 
                 #name
-                if name_letters > 29 or name_letters == 0:          #Máximo 29 caracteres para evitar nomes muito grandes
+                if name_letters > 20 or name_letters == 0:          #Máximo 29 caracteres para evitar nomes muito grandes
                     lbl_red1.configure(text='X', fg='red')
                 elif name.count(' ') == name_letters:                  #Verificar se o nome tem alguma letra/número (não seja so espaços)
                     lbl_red1.configure(text='X', fg='red')
