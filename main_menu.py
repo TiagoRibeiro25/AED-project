@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import time
 from PIL import ImageTk,Image
+import start_menu
 
 def main_menu(usernumber):
     main_window = Tk()
@@ -38,7 +39,41 @@ def main_menu(usernumber):
         clock.after(200, lambda:tick(time1))
     tick(time1)
 
+    menu_abrir = PhotoImage(file = 'menu_abrir.png')
+    menu_fechar = PhotoImage(file = 'menu_fechar.png')
 
- 
+    def sub_menu():
+        #fechar sub-menu
+        def fechar_menu():
+            sub_menu.destroy()
+            btn_menu()
+
+        def log_out():
+            global Dados
+            Dados = []
+            main_window.destroy()
+            start_menu.start_window()
+
+        #Painel-botoes do sub-menu
+        sub_menu = PanedWindow(main_window, width = 300, height= 600, background='black')
+        sub_menu.place(x = 0, y = 0)
+        btn_menu_fechar = Button(sub_menu, image = menu_fechar, font = ('Arial', 10), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=fechar_menu)
+        btn_menu_fechar.place (x = 5,y = 7)
+
+        btn_log_out = Button(sub_menu, text = 'Log out', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=log_out)
+        btn_log_out.place (x = 35,y = 530)
+
+
+    def btn_menu():
+        #Botão hamburguer (sub-menu)
+        def abrir_menu():
+            btn_menu_abrir.destroy()
+            sub_menu()
+
+        btn_menu_abrir = Button(painel_preto_cima, image = menu_abrir, font = ('Arial', 10), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=abrir_menu)
+        btn_menu_abrir.place (x = 5,y = 7)
+
+    btn_menu()
+
 
     main_window.mainloop() 

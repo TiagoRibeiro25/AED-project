@@ -300,5 +300,3 @@ def start_window():
 
 
     start()
-
-start_window()
