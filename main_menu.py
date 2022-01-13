@@ -67,6 +67,9 @@ def main_menu(usernumber):
             main_window.destroy()
             start_menu.start_window()
 
+        def admin():
+            print('admin')
+
         def settings():
             fechar_menu()
             main_painel.destroy
@@ -112,7 +115,7 @@ def main_menu(usernumber):
             sign_up_date_info = Label(settings_painel, text = 'Sign up date: {0}'.format(Dados[5]), fg='white', font = ('Arial', 13), background='black')
             sign_up_date_info.place(x = 70, y = 440)
 
-            #Painel Direita
+            #Painel Direita (credenciais)
             settings_painel1 = PanedWindow(main_painel, width = 600, height= 510, background='black')
             settings_painel1.place(x = 400, y = 20)
             #change name
@@ -120,24 +123,95 @@ def main_menu(usernumber):
             change_name.place(x = 20, y = 20)
             change_name_entry = Entry(settings_painel1, width = 40, background = 'white')
             change_name_entry.place(x = 155, y = 26)
-            #Change password
+            #change password
             change_pw = Label(settings_painel1, text = 'Change password:', fg='white', font = ('Arial', 15), background='black')
-            change_pw.place(x = 20, y = 50)
+            change_pw.place(x = 20, y = 80)
             change_pw_entry = Entry(settings_painel1, width = 34, background = 'white', show='*')
-            change_pw_entry.place(x = 191, y = 56)
+            change_pw_entry.place(x = 191, y = 86)
             #show password
             def show_pw1():
                 pw_info1 = val1.get()
                 if pw_info1 == 1:
                     change_pw_entry.configure(show='')
-                    change_pw_entry.configure(state=DISABLED)
                 if pw_info1 == 0:
                     change_pw_entry.configure(show='*')
-                    change_pw_entry.configure(state=NORMAL)
 
             val1 = IntVar(0)    
             btn_show_pw1 = Checkbutton(settings_painel1, text = "Show Password",fg ='white', font = ('Arial', 7), background = 'black', variable= val1, command=show_pw1)
-            btn_show_pw1.place (x = 20,y = 80)
+            btn_show_pw1.place (x = 20,y = 110)
+            #change email
+            change_email = Label(settings_painel1, text = 'Change email:', fg='white', font = ('Arial', 15), background='black')
+            change_email.place(x = 20, y = 170)
+            change_email_entry = Entry(settings_painel1, width = 40, background = 'white')
+            change_email_entry.place(x = 155, y = 176)
+
+            #Simbolos que seram visiveis após "aplicar"
+            lbl_red1 = Label(settings_painel1, text='X', fg='black', font = ('Arial', 10), background='black',height=1)
+            lbl_red2 = Label(settings_painel1, text='X', fg='black', font = ('Arial', 10), background='black',height=1)
+            lbl_red3 = Label(settings_painel1, text='X', fg='black', font = ('Arial', 10), background='black',height=1)
+            lbl_red1.place(x = 400, y = 24)
+            lbl_red2.place(x = 400, y = 84)
+            lbl_red3.place(x = 400, y = 174)
+
+            def verify_name():
+                name_correct = 0
+                new_name = change_name_entry.get()                          #nome
+                new_name_letters = len(new_name)                            #Numero de caracteres do nome
+
+                if new_name_letters > 20 or new_name_letters == 0:          #Máximo 29 caracteres para evitar nomes muito grandes
+                    lbl_red1.configure(text='X', fg='red')
+                    name_correct = 0
+                elif new_name.count(' ') == new_name_letters:               #Verificar se o nome tem alguma letra/número (não seja so espaços)
+                    lbl_red1.configure(text='X', fg='red')
+                    name_correct = 0
+                else:
+                    lbl_red1.configure(text='✔', fg='green')
+                    name_correct = 1
+
+                if name_correct == 1:
+                    f = open("data/utilizadores.txt", 'r+', encoding='UTF-8')
+                    linhas = f.readlines()
+                    
+
+
+            def verify_pw():
+                pw_correct = 0
+                new_pw = change_pw_entry.get()                                  #Password
+
+                #password
+                if new_pw.count(' ') == len(new_pw) or new_pw == '':            #Verificar se existe uma senha e se a senha tem alguma letra ou número (nao seja so espaços)
+                    lbl_red2.configure(text='X', fg='red')
+                    pw_correct = 0
+                else:
+                    lbl_red2.configure(text='✔', fg='green')
+                    pw_correct = 1
+
+            def verify_email():
+                email_correct = 0
+                new_email = change_email_entry.get()                        #Email
+                    
+                #email
+                if new_email.find('@') == -1 or new_email.find('.') == -1:  #verifica se o email tem um '@' e um '.'
+                    lbl_red3.configure(text='X', fg='red')
+                    email_correct = 0
+                elif new_email.rfind('.') < new_email.find('@'):            #Verifica se o '.' está depois do '@'  (xxxx@xxx.xx)
+                    lbl_red3.configure(text='X', fg='red')                  #                                           ^   ^
+                    email_correct = 0
+                else:
+                    lbl_red3.configure(text='✔', fg='green')
+                    email_correct = 1
+
+
+
+            #Aplicar
+            btn_apply_name = Button(settings_painel1,text = 'Apply', font = ('Arial', 7), fg = 'black', relief='flat', background = 'white', width=10, command=verify_name)
+            btn_apply_name.place (x = 25,y = 50)
+            btn_apply_pw = Button(settings_painel1,text = 'Apply', font = ('Arial', 7), fg = 'black', relief='flat', background = 'white', width=10, command=verify_pw)
+            btn_apply_pw.place (x = 25,y = 130)
+            btn_apply_email = Button(settings_painel1,text = 'Apply', font = ('Arial', 7), fg = 'black', relief='flat', background = 'white', width=10, command=verify_email)
+            btn_apply_email.place (x = 25,y = 200)
+
+
 
 
 
@@ -146,7 +220,7 @@ def main_menu(usernumber):
         #Painel-botoes do sub-menu
         sub_menu = PanedWindow(main_window, width = 300, height= 600, background='black')
         sub_menu.place(x = 0, y = 0)
-        btn_menu_fechar = Button(sub_menu, image = menu_fechar, font = ('Arial', 10), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=fechar_menu)
+        btn_menu_fechar = Button(sub_menu, image = menu_fechar, font = ('Arial', 11), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=fechar_menu)
         btn_menu_fechar.place (x = 5,y = 7)
 
         #Imagem do utilizador
@@ -159,8 +233,10 @@ def main_menu(usernumber):
         lbl_name.place(x = 45, y = 290)
 
         #Start-Page
-        btn_start_page = Button(sub_menu, text = 'Start Page', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=start)
-        btn_start_page.place (x = 35,y = 390)
+        btn_admin_page = Button(sub_menu, text = 'Admin Tools', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=admin)
+        btn_admin_page.place (x = 35,y = 390)
+        if Dados[4] == 'user':
+            btn_admin_page.configure(state=DISABLED)
 
         #Settings
         btn_settings = Button(sub_menu, text = 'Settings', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=settings)
