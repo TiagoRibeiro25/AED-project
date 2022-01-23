@@ -1,60 +1,96 @@
+from cProfile import label
+from calendar import c
+from cgitb import html, text
+from distutils import command
+from email import message
+import functools
+import py_compile
+from random import lognormvariate
+from re import search
+import re
+from sqlite3 import Cursor
+from textwrap import fill
+from this import s
 from tkinter import *
+from tkinter import font
+from tkinter.tix import Tree
+from turtle import title, width
+from xml.etree.ElementTree import C14NWriterTarget
+from PIL import ImageTk, Image
+from tkinter import ttk
+from tkinter import filedialog
+from time import strftime
 from tkinter import messagebox
-import time
-from PIL import ImageTk,Image
+from sys import exit
 import start_menu
 
+# Estrutura
 def main_menu(usernumber):
-    main_window = Tk()
-    main_window.geometry('1024x600')
-    main_window.title("Online Courses Manager")
-    main_window.resizable(0,0)
-    main_window.configure(background='#b9b9b9')
-    main_window.iconbitmap("hat.ico")
+    window = Tk()
+    window.geometry('1250x800+300+100')
+    window.title("Online Courses Manager")
+    window.resizable(0,0)
+    window.configure(background='#b9b9b9')
+    #window.iconbitmap("hat.ico")
 
+
+# Retrieve de dados do User
     def addinfo():
         global Dados
-        f = open("data/utilizadores.txt", 'r', encoding='UTF-8')
+        f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r', encoding='UTF-8')
         linha = f.readlines()
         #Variável user number é do tipo string
         info = linha[int(usernumber)]               #   Dados[0] = User Number |  Dados[3] = Password
         f.close()                                   #   Dados[1] = Name        |  Dados[4] = Admin/User
         Dados = info.split(';')                     #   Dados[2] = Email       |  Dados[5] = Register Date
     addinfo()
-
-    painel_preto_cima = PanedWindow(main_window, width = 1024, height= 50, background='black')
+    
+    painel_preto_cima = PanedWindow(window, width = 1250, height= 50, background='black')
     painel_preto_cima.place(x = 0, y = 0)
 
-    #Relógio
-    time1 = ''
-    clock = Label(painel_preto_cima, font=('times', 20, 'bold'), fg='white', bg='black')
-    clock.place(x = 910,y = 5)
-    def tick(time1):
-        time2 = time.strftime('%H:%M:%S')
-        if time2 != time1:
-            time1 = time2
-            clock.config(text=time2)
-        # calls itself every 200 milliseconds
-        # to update the time display as needed (delay 200ms)
-        clock.after(200, lambda:tick(time1))
-    tick(time1)
+
+    # Relógio
+    def clock():
+        tack = strftime("%H:%M:%S")
+        relogio_label.config(text= tack)
+        relogio_label.after(500, clock)
+    
+    relogio_label = Label(window,font=("calibri", 15), foreground = "black")
+    relogio_label.place(x=1120, y=10)
+
+
 
     #Imagens
-    menu_abrir = PhotoImage(file = 'menu_abrir.png')
-    menu_fechar = PhotoImage(file = 'menu_fechar.png')
-    user_avatar = PhotoImage(file = 'user.png')
+    menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
+    menu_fechar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/menu_fechar.png')
+    user_avatar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/user.png')
+    js_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/js.png')
+    c_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/c.png')
+    html_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/html.png')
+    py_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/py.png')
+    css_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/css.png')
+    go_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/go.png')
+
+
 
     #Limpa as páginas (para evitar memory leak)
     def fundo():
         global main_painel
-        main_painel = PanedWindow(main_window, width = 1024, height= 550, background='#b9b9b9')
+        main_painel = PanedWindow(window, width = 1250, height= 750, background='#b9b9b9')
         main_painel.place(x = 0, y = 50)
-
+    
+    # Box para os cursos
+    def painel():
+        panel1 = PanedWindow(window, width=570, height=470, bd="6", relief="sunken")
+        panel1.place(x=320,y=270)
+      
+     
+        
     #chama a página inicial/principal
     def start():
         main_painel.destroy
         fundo()
-
+        
     def sub_menu():
         #fechar sub-menu
         def fechar_menu():
@@ -64,7 +100,7 @@ def main_menu(usernumber):
         def log_out():
             global Dados
             Dados = []
-            main_window.destroy()
+            window.destroy()
             start_menu.start_window()
 
         def admin():
@@ -74,6 +110,7 @@ def main_menu(usernumber):
             fechar_menu()
             main_painel.destroy
             fundo()
+            
 
             #painel da esquerda
             settings_painel = PanedWindow(main_painel, width = 350, height= 510, background='black')
@@ -136,6 +173,8 @@ def main_menu(usernumber):
                 if pw_info1 == 0:
                     change_pw_entry.configure(show='*')
 
+
+
             val1 = IntVar(0)    
             btn_show_pw1 = Checkbutton(settings_painel1, text = "Show Password",fg ='white', font = ('Arial', 7), background = 'black', variable= val1, command=show_pw1)
             btn_show_pw1.place (x = 20,y = 110)
@@ -169,7 +208,7 @@ def main_menu(usernumber):
                     name_correct = 1
 
                 if name_correct == 1:
-                    f = open("data/utilizadores.txt", 'r+', encoding='UTF-8')
+                    f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r+', encoding='UTF-8')
                     linhas = f.readlines()
                     
 
@@ -214,49 +253,177 @@ def main_menu(usernumber):
 
 
 
-
-
-
         #Painel-botoes do sub-menu
-        sub_menu = PanedWindow(main_window, width = 300, height= 600, background='black')
+        sub_menu = PanedWindow(window, width = 300, height= 800, background='black')
         sub_menu.place(x = 0, y = 0)
         btn_menu_fechar = Button(sub_menu, image = menu_fechar, font = ('Arial', 11), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=fechar_menu)
         btn_menu_fechar.place (x = 5,y = 7)
 
         #Imagem do utilizador
-        ctn_canvas = Canvas(sub_menu, width = 200, height = 200, background='#b9b9b9')
-        ctn_canvas.place(x = 45, y = 80)
-        ctn_canvas.create_image(100,100, image = user_avatar)
+        ctn_canvas = Canvas(sub_menu, width = 220, height = 220, background='#b9b9b9')
+        ctn_canvas.place(x = 40, y = 240)
+        ctn_canvas.create_image(110,110, image = user_avatar)
 
         #Nome do user abaixo do avatar
         lbl_name = Label(sub_menu, text = Dados[1], fg='white', font = ('Arial', 13), background='black')
-        lbl_name.place(x = 45, y = 290)
+        lbl_name.place(x = 45, y = 470)
 
-        #Start-Page
+        #Admin Tools
         btn_admin_page = Button(sub_menu, text = 'Admin Tools', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=admin)
-        btn_admin_page.place (x = 35,y = 390)
+        btn_admin_page.place (x = 35,y = 540)
         if Dados[4] == 'user':
             btn_admin_page.configure(state=DISABLED)
 
         #Settings
         btn_settings = Button(sub_menu, text = 'Settings', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=settings)
-        btn_settings.place (x = 35,y = 460)
+        btn_settings.place (x = 35,y = 610)
 
         #Log out
         btn_log_out = Button(sub_menu, text = 'Log out', font = ('Arial', 18), fg = 'black', relief='groove', background = 'white', width=15, command=log_out)
-        btn_log_out.place (x = 35,y = 530)
+        btn_log_out.place (x = 35,y = 680)
 
     def btn_menu():
-        #Botão hamburguer (sub-menu)
+        #Botão abrir menu (sub-menu)
         def abrir_menu():
             btn_menu_abrir.destroy()
             sub_menu()
 
-        btn_menu_abrir = Button(painel_preto_cima, image = menu_abrir, font = ('Arial', 10), fg = 'black', relief='flat', background = '#b9b9b9', width=39, height=28, command=abrir_menu)
-        btn_menu_abrir.place (x = 5,y = 7)
+        btn_menu_abrir = Button(painel_preto_cima, image = menu_abrir, font = ('Arial', 20), relief='flat', width=39, height=28, command=abrir_menu)
+        btn_menu_abrir.place (x = 15,y = 7)
+  
+        
+    # Botões box central
+    def javaScript():
+        js = Button(window, image = js_img, relief='raised', bd=4, width=150, height=100)
+        js.place (x = 350,y = 300)
+        
+            
+            
+    def c_pro():
+        c = Button(window, image = c_img, relief='raised',bd=4, width=150, height=100)
+        c.place (x = 350,y = 450)
+                    
+
+    def html_tag():
+        html = Button(window, image = html_img, relief='raised', bd=4, width=150, height=100)
+        html.place (x = 350,y = 600)
+
+
+    def pyth():
+        pyth = Button(window, image = py_img, relief='raised', bd=4, width=150, height=100)
+        pyth.place (x = 700,y = 300)
+
+    def css():
+        css_tag = Button(window, image = css_img, relief='raised', bd=4, width=150, height=100)
+        css_tag.place (x = 700,y = 450)
+
+    def go():
+        google = Button(window, image = go_img, relief='raised', bd=4, width=150, height=100)
+        google.place (x = 700,y = 600)
+
+    """
+    # Botões right side
+    # new Window para a lista dos favoritos
+    def favorites(username):
+        global datafav
+        f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", 'r', encoding='UTF-8')
+        linha = f.readlines()
+        f.close()
+        datafav = split(';')     
+    favorites()
+    """
+    def create():
+        new = Toplevel()
+        new.geometry("270x350+500+100")
+        new.title("Favorites List")
+        new.resizable(0,0)
+        paned1 = PanedWindow(new, width=270, height=350, bd="6", relief="sunken" )
+        paned1.place(x=0,y=0)
+        lista = ["Python", "CSS", "HTML", "C++", "Go", "JavaScript"]
+        lbox = Listbox(paned1, height= 11, width=17, font="Arial, 18",selectmode="multiple", fg="blue")
+        for i in lista:
+            lbox.insert(END, i)
+        lbox.place(x=0,y=0)
+        
+
+    def fav():
+        btn_filter = Button(window, text = "Favorites List", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=create)
+        btn_filter.place (x = 970,y = 270)
+
+
+
+
+    def rating():
+        new2 = Toplevel()
+        new2.geometry("900x700+500+100")
+        new2.title("Rate")
+        new2.resizable()
+        paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
+        paned2.place(x=0,y=0)
+        lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+        lbl_title.place(x=270,y=20)
+        # Label e scale js
+        lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_js.place(x=240,y=130)
+        scale1 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+        scale1.place(x=560,y=120)
+        #Label e scale c++
+        lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_c.place(x=240,y=210)
+        scale2 = Scale(new2, width=20, from_= 0, to= 10,orient="horizontal")
+        scale2.place(x=560,y=200)
+        # Label e scale html
+        lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_html.place(x=240,y=290)
+        scale3 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+        scale3.place(x=560,y=280)
+        # Label e scale py
+        lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_py.place(x=240,y=370)      
+        scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+        scale4.place(x=560,y=360)
+        # Label e scale CSS
+        lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_css.place(x=240,y=450)      
+        scale5 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+        scale5.place(x=560,y=440)
+        # Label e scale Go
+        lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+        lbl_go.place(x=240,y=530)      
+        scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+        scale4.place(x=560,y=520)
+        # Botao save
+        btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Helvetica", 22))
+        btn_save.place(x=730,y=620)
+        
+
+    def rate():
+        btn_rate = Button(window, text = "Most Rated", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command= rating)
+        btn_rate.place (x = 970,y = 370)
+
+    def notifications():
+        btn_rate = Button(window, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
+        btn_rate.place (x = 970,y = 470)
+
+    
+
+    def popup():
+        messagebox.showinfo(title="Welcome!", message="Enjoy :)")
+
 
     btn_menu()
     fundo()
     start()
-
-    main_window.mainloop() 
+    clock()
+    painel()
+    javaScript()
+    c_pro()
+    html_tag()
+    pyth()
+    css()
+    go()
+    fav()
+    rate()
+    notifications()
+    popup()
+    window.mainloop()
