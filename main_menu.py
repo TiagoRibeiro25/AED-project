@@ -381,8 +381,48 @@ def main_menu(usernumber):
             lbl_js2.place(x=90,y=500)
             btn_js = Button(panedjs,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_js.place(x=650,y=600)
-            fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_js.place(x=650,y=550)
+
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "JavaScript"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_js.configure(state=DISABLED)
+
+            def remove_fav():
+                fav_js.configure(state=DISABLED)
+        
+
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "JavaScript":
+                                    fav_js = Button(panedjs,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_js.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_js.place(x=650,y=550)
+
+                            
+
+
+    
             txt_cmt = Text(panedjs,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
         
@@ -522,20 +562,25 @@ def main_menu(usernumber):
         
         def create():
             new = Toplevel()
-            new.geometry("270x350+500+100")
+            new.geometry("210x300+500+100")
             new.title("Favorites List")
             new.resizable(0,0)
             paned1 = PanedWindow(new, width=270, height=350, bd="6", relief="sunken" )
             paned1.place(x=0,y=0)
-            lista = ["Python", "CSS", "HTML", "C++", "Go", "JavaScript"]
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if Dados[0] == param[0]:
+                        lista = []
+                        i = 1
+                        while i < len(param)-1:
+                            lista.append(param[i])
+                            i = i + 1
+                        print(lista)
             lbox = Listbox(paned1, height= 11, width=17, font="Arial, 18",selectmode="multiple", fg="blue")
             for i in lista:
                 lbox.insert(END, i)
             lbox.place(x=0,y=0)
-            #file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
-            file = open("data/fav.txt", "r", encoding="utf-8")
-            linhas = file.readlines()
-            file.close()
             
 
         
