@@ -1,30 +1,10 @@
-from cProfile import label
-from calendar import c
-from cgitb import html, text
-from distutils import command
-from email import message
-import encodings
-import functools
-import py_compile
-from random import lognormvariate
-from re import search
-import re
-from sqlite3 import Cursor
-from textwrap import fill
-from this import s
 from tkinter import *
-from tkinter import font
 from tkinter.tix import Tree
-from turtle import right, title, width
-from xml.etree.ElementTree import C14NWriterTarget
 from PIL import ImageTk, Image
 from tkinter import ttk
 from tkinter import filedialog
 from time import strftime
 from tkinter import messagebox
-from sys import exit
-
-from numpy import save
 import start_menu
 
 # Estrutura
@@ -34,13 +14,13 @@ def main_menu(usernumber):
     window.title("Online Courses Manager")
     window.resizable(0,0)
     window.configure(background='#b9b9b9')
-    #window.iconbitmap("hat.ico")
+    window.iconbitmap("png\hat.ico")
 
 
 # Retrieve de dados do User
     def addinfo():
         global Dados
-        f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r', encoding='UTF-8')
+        f = open("data/utilizadores.txt", 'r', encoding='UTF-8')
         linha = f.readlines()
         #Variável user number é do tipo string
         info = linha[int(usernumber)]               #   Dados[0] = User Number |  Dados[3] = Password
@@ -58,21 +38,20 @@ def main_menu(usernumber):
         relogio_label.config(text= tack)
         relogio_label.after(500, clock)
     
-    relogio_label = Label(window,font=("calibri", 15), foreground = "black")
-    relogio_label.place(x=1120, y=10)
-
+    relogio_label = Label(painel_preto_cima,font=("calibri", 17), fg = 'white',background = "black")
+    relogio_label.place(x=1150, y=8)
 
 
     #Imagens
-    menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
-    menu_fechar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/menu_fechar.png')
-    user_avatar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/user.png')
-    js_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/js.png')
-    c_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/c.png')
-    html_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/html.png')
-    py_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/py.png')
-    css_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/css.png')
-    go_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/go.png')
+    menu_abrir = PhotoImage(file = 'png/button.png')
+    menu_fechar = PhotoImage(file = 'png/menu_fechar.png')
+    user_avatar = PhotoImage(file = 'png/user.png')
+    js_img = PhotoImage(file = 'png/js.png')
+    c_img = PhotoImage(file = 'png/c.png')
+    html_img = PhotoImage(file = 'png/html.png')
+    py_img = PhotoImage(file = 'png/py.png')
+    css_img = PhotoImage(file = 'png/css.png')
+    go_img = PhotoImage(file = 'png/go.png')
 
 
 
@@ -81,13 +60,8 @@ def main_menu(usernumber):
         global main_painel
         main_painel = PanedWindow(window, width = 1250, height= 750, background='#b9b9b9')
         main_painel.place(x = 0, y = 50)
-    
-    # Box para os cursos
-    def painel():
-        panel1 = PanedWindow(window, width=570, height=470, bd="6", relief="sunken")
-        panel1.place(x=320,y=270)
       
-     
+
         
     #chama a página inicial/principal
     def start():
@@ -114,10 +88,13 @@ def main_menu(usernumber):
             main_painel.destroy
             fundo()
             
+            #Botão voltar
+            back_btn = Button(main_painel, text = 'Main Page', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
+            back_btn.place (x = 20,y = 20)
 
             #painel da esquerda
             settings_painel = PanedWindow(main_painel, width = 350, height= 510, background='black')
-            settings_painel.place(x = 20, y = 20)
+            settings_painel.place(x = 100, y = 110)
             #user avatar
             ctn_canvas = Canvas(settings_painel, width = 200, height = 200, background='#b9b9b9')
             ctn_canvas.place(x = 70, y = 50)
@@ -157,7 +134,7 @@ def main_menu(usernumber):
 
             #Painel Direita (credenciais)
             settings_painel1 = PanedWindow(main_painel, width = 600, height= 510, background='black')
-            settings_painel1.place(x = 400, y = 20)
+            settings_painel1.place(x = 550, y = 110)
             #change name
             change_name = Label(settings_painel1, text = 'Change name:', fg='white', font = ('Arial', 15), background='black')
             change_name.place(x = 20, y = 20)
@@ -211,7 +188,7 @@ def main_menu(usernumber):
                     name_correct = 1
 
                 if name_correct == 1:
-                    f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r+', encoding='UTF-8')
+                    f = open("data/utilizadores.txt", 'r+', encoding='UTF-8')
                     linhas = f.readlines()
                     
 
@@ -294,205 +271,202 @@ def main_menu(usernumber):
         btn_menu_abrir = Button(painel_preto_cima, image = menu_abrir, font = ('Arial', 20), relief='flat', width=39, height=28, command=abrir_menu)
         btn_menu_abrir.place (x = 15,y = 7)
   
-    ficheiro = "/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/coments.txt"
-    def save_coments():
-        linha = txt_texto.get("1.0","end")
-        f = open(ficheiro, "w", encoding="utf-8")
-        f.write(linha)
-        f.close()
+
+    def start():
+        main_painel.destroy
+        fundo()
+
+        def save_coments():
+            ficheiro = "/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/coments.txt"
+            linha = txt_texto.get("1.0","end")
+            f = open(ficheiro, "w", encoding="utf-8")
+            f.write(linha)
+            f.close()
+
+        # Box para os cursos
+        def painel():
+            global panel1
+            panel1 = PanedWindow(main_painel, width=570, height=470, bd="6", relief="sunken")
+            panel1.place(x=320,y=270)    
         
+        painel()
+
+        # Botões box central
+        def windowScript():
+            windowjs = Toplevel()
+            windowjs.geometry("900x700+500+100")
+            windowjs.title("JavaScript")
+            windowjs.resizable()
+            panedjs = PanedWindow(windowjs, width=898, height=698, bd="8", relief="sunken")
+            panedjs.place(x=0,y=0)
+            titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            titlejs.place(x=340,y=20)
+            lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_js.place(x=90,y=110)
+            txt_js = Text(panedjs, width=30, height=20, wrap="word")
+            txt_js.place(x=80,y=150)
+            lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_js2.place(x=90,y=500)
+            btn_js = Button(panedjs,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+            btn_js.place(x=650,y=600)
+            fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+            fav_js.place(x=650,y=550)
+            cmt_js = Text(panedjs,width=30, height=5, wrap='word')
+            cmt_js.place(x=80,y=550)
         
-    # Botões box central
-    def windowScript():
-        windowjs = Toplevel()
-        windowjs.geometry("900x700+500+100")
-        windowjs.title("JavaScript")
-        windowjs.resizable()
-        panedjs = PanedWindow(windowjs, width=898, height=698, bd="8", relief="sunken")
-        panedjs.place(x=0,y=0)
-        titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
-        titlejs.place(x=340,y=20)
-        lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Helvetica, 14"))
-        lbl_js.place(x=90,y=110)
-        txt_js = Text(panedjs, width=30, height=20, wrap="word")
-        txt_js.place(x=80,y=150)
-        lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Helvetica, 12"))
-        lbl_js2.place(x=90,y=500)
-        btn_js = Button(panedjs,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
-        btn_js.place(x=650,y=600)
-        fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-        fav_js.place(x=650,y=550)
-        cmt_js = Text(panedjs,width=30, height=5, wrap='word')
-        cmt_js.place(x=80,y=550)
+        def windowC():
+            window_cpro = Toplevel()
+            window_cpro.geometry("900x700+500+100")
+            window_cpro.title("C++")
+            window_cpro.resizable(0,0)
+            panedc = PanedWindow(window_cpro, width=898, height=698, bd="8", relief="sunken")
+            panedc.place(x=0,y=0)
+            titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            titlec.place(x=400,y=20)
+            lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_c.place(x=90,y=110)
+            txt_c = Text(panedc, width=30, height=20, wrap="word")
+            txt_c.place(x=80,y=150)
+            lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_c2.place(x=90,y=500)
+            btn_c = Button(panedc,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+            btn_c.place(x=650,y=600)
+            fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+            fav_c.place(x=650,y=550)
+            cmt_c = Text(panedc,width=30, height=5, wrap='word')
+            cmt_c.place(x=80,y=550)    
         
-    def windowC():
-        window_cpro = Toplevel()
-        window_cpro.geometry("900x700+500+100")
-        window_cpro.title("C++")
-        window_cpro.resizable(0,0)
-        panedc = PanedWindow(window_cpro, width=898, height=698, bd="8", relief="sunken")
-        panedc.place(x=0,y=0)
-        titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
-        titlec.place(x=400,y=20)
-        lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Helvetica, 14"))
-        lbl_c.place(x=90,y=110)
-        txt_c = Text(panedc, width=30, height=20, wrap="word")
-        txt_c.place(x=80,y=150)
-        lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Helvetica, 12"))
-        lbl_c2.place(x=90,y=500)
-        btn_c = Button(panedc,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
-        btn_c.place(x=650,y=600)
-        fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-        fav_c.place(x=650,y=550)
-        cmt_c = Text(panedc,width=30, height=5, wrap='word')
-        cmt_c.place(x=80,y=550)    
-        
-    def windowHTML():
-        window_html = Toplevel()
-        window_html.geometry("900x700+500+100")
-        window_html.title("HTML")
-        window_html.resizable(0,0)
-        panedhtml = PanedWindow(window_html, width=898, height=698, bd="8", relief="sunken")
-        panedhtml.place(x=0,y=0)
-        title_html = Label(panedhtml, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
-        title_html.place(x=340,y=20)
-        lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Helvetica, 14"))
-        lbl_html.place(x=90,y=110)
-        txt_html = Text(panedhtml, width=30, height=20, wrap="word")
-        txt_html.place(x=80,y=150)
-        lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Helvetica, 12"))
-        lbl_html2.place(x=90,y=500)
-        btn_html = Button(panedhtml,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
-        btn_html.place(x=650,y=600)
-        fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-        fav_html.place(x=650,y=550)
-        cmt_html = Text(panedhtml,width=30, height=5, wrap='word')
-        cmt_html.place(x=80,y=550)
-        
-        
-    def javaScript():
-        js = Button(window, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
-        js.place (x = 350,y = 300)
-        
+        def windowHTML():
+            window_html = Toplevel()
+            window_html.geometry("900x700+500+100")
+            window_html.title("HTML")
+            window_html.resizable(0,0)
+            panedhtml = PanedWindow(window_html, width=898, height=698, bd="8", relief="sunken")
+            panedhtml.place(x=0,y=0)
+            title_html = Label(panedhtml, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            title_html.place(x=340,y=20)
+            lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_html.place(x=90,y=110)
+            txt_html = Text(panedhtml, width=30, height=20, wrap="word")
+            txt_html.place(x=80,y=150)
+            lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_html2.place(x=90,y=500)
+            btn_html = Button(panedhtml,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+            btn_html.place(x=650,y=600)
+            fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+            fav_html.place(x=650,y=550)
+            cmt_html = Text(panedhtml,width=30, height=5, wrap='word')
+            cmt_html.place(x=80,y=550)
+
+
+        js = Button(panel1, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
+        js.place (x = 50,y = 30)
             
+                
+
+        c = Button(panel1, image = c_img, relief='raised',bd=4, width=150, height=100, command= windowC)
+        c.place (x = 50,y = 180)
+                        
+
+
+        html = Button(panel1, image = html_img, relief='raised', bd=4, width=150, height=100, command=windowHTML)
+        html.place (x = 50,y = 330)
+
+
+
+        pyth = Button(panel1, image = py_img, relief='raised', bd=4, width=150, height=100)
+        pyth.place (x = 350,y = 30)
+
+        css_tag = Button(panel1, image = css_img, relief='raised', bd=4, width=150, height=100)
+        css_tag.place (x = 350,y = 180)
+
+        google = Button(panel1, image = go_img, relief='raised', bd=4, width=150, height=100)
+        google.place (x = 350,y = 330)
+
+        """
+        # Botões right side
+        # new Window para a lista dos favoritos
+        def favorites(username):
+            global datafav
+            f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", 'r', encoding='UTF-8')
+            linha = f.readlines()
+            f.close()
+            datafav = split(';')     
+        favorites()
+        """
+        def create():
+            new = Toplevel()
+            new.geometry("270x350+500+100")
+            new.title("Favorites List")
+            new.resizable(0,0)
+            paned1 = PanedWindow(new, width=270, height=350, bd="6", relief="sunken" )
+            paned1.place(x=0,y=0)
+            lista = ["Python", "CSS", "HTML", "C++", "Go", "JavaScript"]
+            lbox = Listbox(paned1, height= 11, width=17, font="Arial, 18",selectmode="multiple", fg="blue")
+            for i in lista:
+                lbox.insert(END, i)
+            lbox.place(x=0,y=0)
+            file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
+            linhas = file.readlines()
+            file.close()
             
-    def c_pro():
-        c = Button(window, image = c_img, relief='raised',bd=4, width=150, height=100, command= windowC)
-        c.place (x = 350,y = 450)
-                    
 
-    def html_tag():
-        html = Button(window, image = html_img, relief='raised', bd=4, width=150, height=100, command=windowHTML)
-        html.place (x = 350,y = 600)
-
-
-    def pyth():
-        pyth = Button(window, image = py_img, relief='raised', bd=4, width=150, height=100)
-        pyth.place (x = 700,y = 300)
-
-    def css():
-        css_tag = Button(window, image = css_img, relief='raised', bd=4, width=150, height=100)
-        css_tag.place (x = 700,y = 450)
-
-    def go():
-        google = Button(window, image = go_img, relief='raised', bd=4, width=150, height=100)
-        google.place (x = 700,y = 600)
-
-    """
-    # Botões right side
-    # new Window para a lista dos favoritos
-    def favorites(username):
-        global datafav
-        f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", 'r', encoding='UTF-8')
-        linha = f.readlines()
-        f.close()
-        datafav = split(';')     
-    favorites()
-    """
-    def create():
-        new = Toplevel()
-        new.geometry("270x350+500+100")
-        new.title("Favorites List")
-        new.resizable(0,0)
-        paned1 = PanedWindow(new, width=270, height=350, bd="6", relief="sunken" )
-        paned1.place(x=0,y=0)
-        lista = ["Python", "CSS", "HTML", "C++", "Go", "JavaScript"]
-        lbox = Listbox(paned1, height= 11, width=17, font="Arial, 18",selectmode="multiple", fg="blue")
-        for i in lista:
-            lbox.insert(END, i)
-        lbox.place(x=0,y=0)
-        file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
-        linhas = file.readlines()
-        file.close()
-        for lin in linhas:
-            print(lin)
-        input()
-    
-    
-    def fav():
-        btn_filter = Button(window, text = "Favorites List", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=create)
+        
+        btn_filter = Button(main_painel, text = "Favorites List", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=create)
         btn_filter.place (x = 970,y = 270)
 
 
-
-
-    def rating():
-        new2 = Toplevel()
-        new2.geometry("900x700+500+100")
-        new2.title("Rate")
-        new2.resizable(0,0)
-        paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
-        paned2.place(x=0,y=0)
-        lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
-        lbl_title.place(x=270,y=20)
-        # Label e scale js
-        lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_js.place(x=240,y=130)
-        scale1 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-        scale1.place(x=560,y=120)
-        #Label e scale c++
-        lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_c.place(x=240,y=210)
-        scale2 = Scale(new2, width=20, from_= 0, to= 10,orient="horizontal")
-        scale2.place(x=560,y=200)
-        # Label e scale html
-        lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_html.place(x=240,y=290)
-        scale3 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-        scale3.place(x=560,y=280)
-        # Label e scale py
-        lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_py.place(x=240,y=370)      
-        scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-        scale4.place(x=560,y=360)
-        # Label e scale CSS
-        lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_css.place(x=240,y=450)      
-        scale5 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-        scale5.place(x=560,y=440)
-        # Label e scale Go
-        lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
-        lbl_go.place(x=240,y=530)      
-        scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-        scale4.place(x=560,y=520)
-        # Botao save
-        btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Helvetica", 22))
-        btn_save.place(x=730,y=620)
+        def rating():
+            new2 = Toplevel()
+            new2.geometry("900x700+500+100")
+            new2.title("Rate")
+            new2.resizable()
+            paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
+            paned2.place(x=0,y=0)
+            lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            lbl_title.place(x=270,y=20)
+            # Label e scale js
+            lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_js.place(x=240,y=130)
+            scale1 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=560,y=120)
+            #Label e scale c++
+            lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_c.place(x=240,y=210)
+            scale2 = Scale(new2, width=20, from_= 0, to= 10,orient="horizontal")
+            scale2.place(x=560,y=200)
+            # Label e scale html
+            lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_html.place(x=240,y=290)
+            scale3 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+            scale3.place(x=560,y=280)
+            # Label e scale py
+            lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_py.place(x=240,y=370)      
+            scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+            scale4.place(x=560,y=360)
+            # Label e scale CSS
+            lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_css.place(x=240,y=450)      
+            scale5 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+            scale5.place(x=560,y=440)
+            # Label e scale Go
+            lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_go.place(x=240,y=530)      
+            scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
+            scale4.place(x=560,y=520)
+            # Botao save
+            btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Helvetica", 22))
+            btn_save.place(x=730,y=620)
+            
 
         
-
-    def rate():
-        btn_rate = Button(window, text = "Most Rated", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command= rating)
+        btn_rate = Button(main_painel, text = "Most Rated", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command= rating)
         btn_rate.place (x = 970,y = 370)
 
-    def notifications():
-        btn_rate = Button(window, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
+        
+        btn_rate = Button(main_painel, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
         btn_rate.place (x = 970,y = 470)
-
-    
-
-    def popup():
-        messagebox.showinfo(title="Welcome!", message="Enjoy :)\t")
 
 
 
@@ -500,15 +474,5 @@ def main_menu(usernumber):
     fundo()
     start()
     clock()
-    painel()
-    javaScript()
-    c_pro()
-    html_tag()
-    pyth()
-    css()
-    go()
-    fav()
-    rate()
-    notifications()
-    popup()
+    messagebox.showinfo(title="Welcome!", message="Enjoy :)")
     window.mainloop()
