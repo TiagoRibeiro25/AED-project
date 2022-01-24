@@ -15,12 +15,14 @@ def main_menu(usernumber):
     window.resizable(0,0)
     window.configure(background='#b9b9b9')
     #window.iconbitmap("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/hat.ico")
+    window.iconbitmap("png/hat.ico")
 
 
 # Retrieve de dados do User
     def addinfo():
         global Dados
-        f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r', encoding='UTF-8')
+        #f = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/utilizadores.txt", 'r', encoding='UTF-8')
+        f = open("data/utilizadores.txt", 'r', encoding='UTF-8')
         linha = f.readlines()
         #Variável user number é do tipo string
         info = linha[int(usernumber)]               #   Dados[0] = User Number |  Dados[3] = Password
@@ -43,15 +45,25 @@ def main_menu(usernumber):
 
 
     #Imagens
-    menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
-    menu_fechar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/menu_fechar.png')
-    user_avatar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/user.png')
-    js_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/js.png')
-    c_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/c.png')
-    html_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/html.png')
-    py_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/py.png')
-    css_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/css.png')
-    go_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/go.png')
+    #menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
+    #menu_fechar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/menu_fechar.png')
+    #user_avatar = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/user.png')
+    #js_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/js.png')
+    #c_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/c.png')
+    #html_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/html.png')
+    #py_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/py.png')
+    #css_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/css.png')
+    #go_img = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/go.png')
+
+    menu_abrir = PhotoImage(file = 'png/button.png')
+    menu_fechar = PhotoImage(file = 'png/menu_fechar.png')
+    user_avatar = PhotoImage(file = 'png/user.png')
+    js_img = PhotoImage(file = 'png/js.png')
+    c_img = PhotoImage(file = 'png/c.png')
+    html_img = PhotoImage(file = 'png/html.png')
+    py_img = PhotoImage(file = 'png/py.png')
+    css_img = PhotoImage(file = 'png/css.png')
+    go_img = PhotoImage(file = 'png/go.png')
 
 
 
@@ -188,9 +200,26 @@ def main_menu(usernumber):
                     name_correct = 1
 
                 if name_correct == 1:
-                    f = open("data/utilizadores.txt", 'r+', encoding='UTF-8')
-                    linhas = f.readlines()
-                    
+                    with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                        new_text = ""
+                        var_user = ""
+                        for line in f:
+                            user = line.split(";")
+                            if Dados[0] == user[0]:
+                                if new_name == user[1]:
+                                    messagebox.showerror(title="Warning!",message="Your new name is the same as the old name, try again!") 
+                                    var_user = user[1]      
+                                    break
+                                messagebox.showinfo(title="Sucess", message="Your name has been changed!")  
+                                var_user = user[1]
+                                user[1] = new_name
+                                new_text = new_text + ";".join(user)
+                            else:
+                                new_text = new_text + line
+                    if new_name != var_user:
+                        with open("data/utilizadores.txt", "w", encoding="UTF-8") as f: 
+                            f.write(new_text)
+                            Dados[1] = new_name
 
 
             def verify_pw():
@@ -204,6 +233,29 @@ def main_menu(usernumber):
                 else:
                     lbl_red2.configure(text='✔', fg='green')
                     pw_correct = 1
+
+                if pw_correct == 1:
+                    with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                        new_text = ""
+                        var_pw = ""
+                        for line in f:
+                            user = line.split(";")
+                            if Dados[0] == user[0]:
+                                if new_pw == user[3]:
+                                    messagebox.showerror(title="Warning!",message="Your new password is the same as the old  password, try again!")
+                                    var_pw = user[3]      
+                                    break
+                                messagebox.showinfo(title="Sucess", message="Your password has been changed!")
+                                var_pw = user[3]
+                                user[3] = new_pw
+                                new_text = new_text + ";".join(user)
+                            else:
+                                new_text = new_text + line
+                    if new_pw != var_pw:
+                        with open("data/utilizadores.txt", "w", encoding="UTF-8") as f:
+                            f.write(new_text)
+                            Dados[3] = new_pw
+
 
             def verify_email():
                 email_correct = 0
@@ -220,6 +272,28 @@ def main_menu(usernumber):
                     lbl_red3.configure(text='✔', fg='green')
                     email_correct = 1
 
+                if email_correct == 1:
+                    with open("data/utilizadores.txt", "r", encoding="UTF-8") as f:
+                        new_text = ""
+                        var_email = ""
+                        for line in f:
+                            user = line.split(";")
+                            if Dados[0] == user[0]:
+                                if new_email == user[2]:
+                                    messagebox.showerror(title="Warning!",message="Your new email is the same as the old email, try again!")
+                                    var_email = user[2]      
+                                    break
+                                messagebox.showinfo(title="Sucess", message="Your email has been changed!")
+                                var_email = user[2]
+                                user[2] = new_email
+                                new_text = new_text + ";".join(user)
+                            else:
+                                new_text = new_text + line
+                    if new_email != var_email:
+                        with open("data/utilizadores.txt", "w", encoding="UTF-8") as f:
+                            f.write(new_text)
+                            Dados[2] = new_email
+
 
 
             #Aplicar
@@ -229,6 +303,10 @@ def main_menu(usernumber):
             btn_apply_pw.place (x = 25,y = 130)
             btn_apply_email = Button(settings_painel1,text = 'Apply', font = ('Arial', 7), fg = 'black', relief='flat', background = 'white', width=10, command=verify_email)
             btn_apply_email.place (x = 25,y = 200)
+
+            lbl_info = Label(settings_painel1, text = "AED - Project\nTSIW 2021-2022\n\nTiago Ribeiro\nNuno Mendonça\nJosé Pedro", fg='white', font = ('Arial', 13), background='black')
+            lbl_info.place(x = 460, y = 380)
+
 
 
 
@@ -284,12 +362,6 @@ def main_menu(usernumber):
         
         painel()
         
-        
-        with open("data/coments.txt", "r", encoding="UTF-8") as f:
-            cont_line=f.readlines()
-        save = '\n' + " "
-        with open("data/coments.txt", "a", encoding="UTF-8") as f: 
-            f.write(save) 
 
         # Botões box central
         def windowScript():
@@ -460,7 +532,8 @@ def main_menu(usernumber):
             for i in lista:
                 lbox.insert(END, i)
             lbox.place(x=0,y=0)
-            file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
+            #file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
+            file = open("data/fav.txt", "r", encoding="utf-8")
             linhas = file.readlines()
             file.close()
             
