@@ -11,7 +11,7 @@ def start_window():
     start_window.geometry('850x400+500+300')
     start_window.resizable(0,0)
     start_window.configure(background='black')
-    start_window.iconbitmap("hat.ico")
+    start_window.iconbitmap("png\hat.ico")
         
     def start():
         start_window.title('Online Courses Manager')
@@ -203,6 +203,12 @@ def start_window():
                     with open("data/utilizadores.txt", "a", encoding="UTF-8") as f: 
                         f.write(save)  
                     
+                    with open("data/fav.txt", "r", encoding="UTF-8") as g:
+                        cont_line=g.readlines()
+                    save_fav = '\n' + str(len(cont_line)) + ';'
+                    with open("data/fav.txt", "a", encoding="UTF-8") as g: 
+                        g.write(save_fav)  
+                    
                     btn_create_account.configure(state=DISABLED)
                                  
             #Botão reset de dados 
@@ -274,8 +280,8 @@ def start_window():
 
         #Imagens
         #img = PhotoImage(file = 'Bem-vindo.png')
-        img = PhotoImage(file = 'Welcome.png')
-        img1 = PhotoImage(file = 'Cursos-Online.png')
+        img = PhotoImage(file = 'png\Welcome.png')
+        img1 = PhotoImage(file = 'png\Cursos-Online.png')
 
         #Canvas
         ctn_canvas = Canvas(painel_inicial, width = 770, height = 330, background='#b9b9b9')
