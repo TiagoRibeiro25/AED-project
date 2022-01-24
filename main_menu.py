@@ -3,6 +3,7 @@ from calendar import c
 from cgitb import html, text
 from distutils import command
 from email import message
+import encodings
 import functools
 import py_compile
 from random import lognormvariate
@@ -14,7 +15,7 @@ from this import s
 from tkinter import *
 from tkinter import font
 from tkinter.tix import Tree
-from turtle import title, width
+from turtle import right, title, width
 from xml.etree.ElementTree import C14NWriterTarget
 from PIL import ImageTk, Image
 from tkinter import ttk
@@ -22,6 +23,8 @@ from tkinter import filedialog
 from time import strftime
 from tkinter import messagebox
 from sys import exit
+
+from numpy import save
 import start_menu
 
 # Estrutura
@@ -291,21 +294,95 @@ def main_menu(usernumber):
         btn_menu_abrir = Button(painel_preto_cima, image = menu_abrir, font = ('Arial', 20), relief='flat', width=39, height=28, command=abrir_menu)
         btn_menu_abrir.place (x = 15,y = 7)
   
+    ficheiro = "/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/coments.txt"
+    def save_coments():
+        linha = txt_texto.get("1.0","end")
+        f = open(ficheiro, "w", encoding="utf-8")
+        f.write(linha)
+        f.close()
+        
         
     # Botões box central
+    def windowScript():
+        windowjs = Toplevel()
+        windowjs.geometry("900x700+500+100")
+        windowjs.title("JavaScript")
+        windowjs.resizable()
+        panedjs = PanedWindow(windowjs, width=898, height=698, bd="8", relief="sunken")
+        panedjs.place(x=0,y=0)
+        titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+        titlejs.place(x=340,y=20)
+        lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+        lbl_js.place(x=90,y=110)
+        txt_js = Text(panedjs, width=30, height=20, wrap="word")
+        txt_js.place(x=80,y=150)
+        lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Helvetica, 12"))
+        lbl_js2.place(x=90,y=500)
+        btn_js = Button(panedjs,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+        btn_js.place(x=650,y=600)
+        fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+        fav_js.place(x=650,y=550)
+        cmt_js = Text(panedjs,width=30, height=5, wrap='word')
+        cmt_js.place(x=80,y=550)
+        
+    def windowC():
+        window_cpro = Toplevel()
+        window_cpro.geometry("900x700+500+100")
+        window_cpro.title("C++")
+        window_cpro.resizable(0,0)
+        panedc = PanedWindow(window_cpro, width=898, height=698, bd="8", relief="sunken")
+        panedc.place(x=0,y=0)
+        titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+        titlec.place(x=400,y=20)
+        lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+        lbl_c.place(x=90,y=110)
+        txt_c = Text(panedc, width=30, height=20, wrap="word")
+        txt_c.place(x=80,y=150)
+        lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Helvetica, 12"))
+        lbl_c2.place(x=90,y=500)
+        btn_c = Button(panedc,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+        btn_c.place(x=650,y=600)
+        fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+        fav_c.place(x=650,y=550)
+        cmt_c = Text(panedc,width=30, height=5, wrap='word')
+        cmt_c.place(x=80,y=550)    
+        
+    def windowHTML():
+        window_html = Toplevel()
+        window_html.geometry("900x700+500+100")
+        window_html.title("HTML")
+        window_html.resizable(0,0)
+        panedhtml = PanedWindow(window_html, width=898, height=698, bd="8", relief="sunken")
+        panedhtml.place(x=0,y=0)
+        title_html = Label(panedhtml, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+        title_html.place(x=340,y=20)
+        lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+        lbl_html.place(x=90,y=110)
+        txt_html = Text(panedhtml, width=30, height=20, wrap="word")
+        txt_html.place(x=80,y=150)
+        lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Helvetica, 12"))
+        lbl_html2.place(x=90,y=500)
+        btn_html = Button(panedhtml,text="Save", fg="blue", font=("Helvetica, 16"), command= save_coments)
+        btn_html.place(x=650,y=600)
+        fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
+        fav_html.place(x=650,y=550)
+        cmt_html = Text(panedhtml,width=30, height=5, wrap='word')
+        cmt_html.place(x=80,y=550)
+        
+        
     def javaScript():
-        js = Button(window, image = js_img, relief='raised', bd=4, width=150, height=100)
+        js = Button(window, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
         js.place (x = 350,y = 300)
         
             
             
     def c_pro():
-        c = Button(window, image = c_img, relief='raised',bd=4, width=150, height=100)
+        c = Button(window, image = c_img, relief='raised',bd=4, width=150, height=100, command= windowC)
         c.place (x = 350,y = 450)
                     
 
     def html_tag():
-        html = Button(window, image = html_img, relief='raised', bd=4, width=150, height=100)
+        html = Button(window, image = html_img, relief='raised', bd=4, width=150, height=100, command=windowHTML)
         html.place (x = 350,y = 600)
 
 
@@ -344,8 +421,14 @@ def main_menu(usernumber):
         for i in lista:
             lbox.insert(END, i)
         lbox.place(x=0,y=0)
-        
-
+        file = open("/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/data/fav.txt", "r", encoding="utf-8")
+        linhas = file.readlines()
+        file.close()
+        for lin in linhas:
+            print(lin)
+        input()
+    
+    
     def fav():
         btn_filter = Button(window, text = "Favorites List", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=create)
         btn_filter.place (x = 970,y = 270)
@@ -357,7 +440,7 @@ def main_menu(usernumber):
         new2 = Toplevel()
         new2.geometry("900x700+500+100")
         new2.title("Rate")
-        new2.resizable()
+        new2.resizable(0,0)
         paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
         paned2.place(x=0,y=0)
         lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
@@ -395,6 +478,7 @@ def main_menu(usernumber):
         # Botao save
         btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Helvetica", 22))
         btn_save.place(x=730,y=620)
+
         
 
     def rate():
@@ -408,7 +492,8 @@ def main_menu(usernumber):
     
 
     def popup():
-        messagebox.showinfo(title="Welcome!", message="Enjoy :)")
+        messagebox.showinfo(title="Welcome!", message="Enjoy :)\t")
+
 
 
     btn_menu()
