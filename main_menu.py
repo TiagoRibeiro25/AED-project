@@ -104,6 +104,14 @@ def main_menu(usernumber):
             back_btn = Button(main_painel, text = 'Main Page', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
             back_btn.place (x = 20,y = 20)
 
+            painel = PanedWindow(main_painel, width = 1000, height= 510, background='black')
+            painel.place(x = 100, y = 110)
+
+
+
+
+
+
 
         def settings():
             fechar_menu()
