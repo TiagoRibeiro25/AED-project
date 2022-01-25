@@ -63,6 +63,7 @@ def main_menu(usernumber):
     py_img = PhotoImage(file = 'png/py.png')
     css_img = PhotoImage(file = 'png/css.png')
     go_img = PhotoImage(file = 'png/go.png')
+    main_img = PhotoImage(file = 'png/main_img.png')
 
 
 
@@ -71,6 +72,12 @@ def main_menu(usernumber):
         global main_painel
         main_painel = PanedWindow(window, width = 1250, height= 750, background='#b9b9b9')
         main_painel.place(x = 0, y = 50)
+
+
+
+        canvas_main = Canvas(window, width = 343, height = 200, background='#b9b9b9')
+        canvas_main.place(x = 440, y = 75)
+        canvas_main.create_image(150,103, image = main_img)
       
 
         
@@ -357,8 +364,8 @@ def main_menu(usernumber):
         def painel():
             global panel1
             panel1 = PanedWindow(main_painel, width=570, height=470, bd="6", relief="sunken")
-            panel1.place(x=320,y=150)    
-        
+            panel1.place(x=320,y=250)    
+
         painel()
         
 
