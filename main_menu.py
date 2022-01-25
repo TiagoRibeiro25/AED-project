@@ -1350,43 +1350,104 @@ def main_menu(usernumber):
             new2.resizable(0,0)
             paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
             paned2.place(x=0,y=0)
-            lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
-            lbl_title.place(x=270,y=20)
+            lbl_title = Label(new2, text="Courses Rate Scores", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
+            lbl_title.place(x=240,y=20)
+
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "JavaScript":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_js = soma / n_total
+                    if param[0] == "C++":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_c = soma / n_total
+                    if param[0] == "HTML":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_html = soma / n_total
+                    if param[0] == "Python":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_py = soma / n_total
+                    if param[0] == "CSS":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_css = soma / n_total
+                    if param[0] == "Go":
+                        i = 2
+                        soma = 0
+                        n_total = 0
+                        while i <= len(param)-1:
+                            soma = soma + int(param[i])
+                            n_total = n_total + 1
+                            i = i + 2
+                        rate_go = soma / n_total
+
             # Label e scale js
             lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Arial", 20))
             lbl_js.place(x=240,y=130)
-            scale1 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-            scale1.place(x=560,y=120)
+            lbl_js_rate = Label(new2, text = rate_js, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_js_rate.place(x=600,y=130)
+
             #Label e scale c++
             lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Arial", 20))
             lbl_c.place(x=240,y=210)
-            scale2 = Scale(new2, width=20, from_= 0, to= 10,orient="horizontal")
-            scale2.place(x=560,y=200)
+            lbl_c_rate = Label(new2, text = rate_c, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_c_rate.place(x=600,y=210)
+
+
             # Label e scale html
             lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Arial", 20))
             lbl_html.place(x=240,y=290)
-            scale3 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-            scale3.place(x=560,y=280)
+            lbl_html_rate = Label(new2, text = rate_c, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_html_rate.place(x=600,y=290)
+
             # Label e scale py
             lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Arial", 20))
-            lbl_py.place(x=240,y=370)      
-            scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-            scale4.place(x=560,y=360)
+            lbl_py.place(x=240,y=370)   
+            lbl_py_rate = Label(new2, text = rate_py, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_py_rate.place(x=600,y=370)   
+
             # Label e scale CSS
             lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Arial", 20))
-            lbl_css.place(x=240,y=450)      
-            scale5 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-            scale5.place(x=560,y=440)
+            lbl_css.place(x=240,y=450)  
+            lbl_css_rate = Label(new2, text = rate_css, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_css_rate.place(x=600,y=450)    
+
             # Label e scale Go
             lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Arial", 20))
-            lbl_go.place(x=240,y=530)      
-            scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
-            scale4.place(x=560,y=520)
-            # Botao save
-            btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Arial", 22))
-            btn_save.place(x=730,y=620)
+            lbl_go.place(x=240,y=530)    
+            lbl_go_rate = Label(new2, text = rate_go, fg="blue",bd="8", relief="raised", font=("Arial", 20))
+            lbl_go_rate.place(x=600,y=530)  
             
-
         
         btn_rate = Button(main_painel, text = "Most Rated", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command= rating)
         btn_rate.place (x = 970,y = 370)
