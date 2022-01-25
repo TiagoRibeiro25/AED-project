@@ -1,3 +1,5 @@
 aluno_novo0;Username;email;password;type of user, register date;
 1;Tiago Ribeiro;40210462@esmad.ipp.pt;2525;admin;07/01/2022;
 2;aluno;aluno@.;aluno;user;24/01/2022;
+3;Teste;teste@teste.pt;teste;user;25/01/2022;
+4;teste2;teste@p.;teste;user;25/01/2022;

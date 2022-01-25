@@ -74,14 +74,7 @@ def main_menu(usernumber):
         global main_painel
         main_painel = PanedWindow(window, width = 1250, height= 750, background='#b9b9b9')
         main_painel.place(x = 0, y = 50)
-
-
-
-        canvas_main = Canvas(window, width = 343, height = 200, background='#b9b9b9')
-        canvas_main.place(x = 440, y = 75)
-        canvas_main.create_image(150,103, image = main_img)
       
-
         
     #chama a página inicial/principal
     def start():
@@ -1181,6 +1174,10 @@ def main_menu(usernumber):
         
         btn_rate = Button(main_painel, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
         btn_rate.place (x = 970,y = 470)
+
+        canvas_main = Canvas(main_painel, width = 343, height = 200, background='#b9b9b9')
+        canvas_main.place(x = 440, y = 25)
+        canvas_main.create_image(150,103, image = main_img)
 
     btn_menu()
     fundo()
