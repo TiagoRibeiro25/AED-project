@@ -1,3 +1,4 @@
+from distutils import command
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -5,6 +6,7 @@ from tkinter import ttk
 from tkinter import filedialog
 from time import strftime
 from tkinter import messagebox
+import webbrowser
 import start_menu
 
 # Estrutura
@@ -379,10 +381,25 @@ def main_menu(usernumber):
             panedjs.place(x=0,y=0)
             titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             titlejs.place(x=320,y=20)
-            lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_js = Label(panedjs, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_js.place(x=90,y=110)
-            txt_texto = Text(panedjs, width=30, height=15, wrap="word")
+
+            txt_texto = Text(panedjs, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "JavaScript":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://javascript.info/")
+
+            open_btn = Button(panedjs, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_js2.place(x=90,y=420)
 
@@ -477,10 +494,25 @@ def main_menu(usernumber):
             panedc.place(x=0,y=0)
             titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             titlec.place(x=390,y=20)
-            lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_c = Label(panedc, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_c.place(x=90,y=110)
-            txt_c = Text(panedc, width=30, height=15, wrap="word")
-            txt_c.place(x=80,y=150)
+
+            txt_texto = Text(panedc, width=90, height=15, wrap="word")
+            txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "C++":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://www.w3schools.com/cpp/cpp_intro.asp")
+
+            open_btn = Button(panedc, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_c2.place(x=90,y=420)
 
@@ -574,10 +606,25 @@ def main_menu(usernumber):
             panedhtml.place(x=0,y=0)
             title_html = Label(panedhtml, text="HTML", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_html.place(x=370,y=20)
-            lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_html = Label(panedhtml, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_html.place(x=90,y=110)
-            txt_html = Text(panedhtml, width=30, height=15, wrap="word")
-            txt_html.place(x=80,y=150)
+
+            txt_texto = Text(panedhtml, width=90, height=15, wrap="word")
+            txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "HTML":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://www.w3schools.com/html/html_intro.asp")
+
+            open_btn = Button(panedhtml, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_html2.place(x=90,y=420)
 
@@ -672,10 +719,25 @@ def main_menu(usernumber):
             panedpy.place(x=0,y=0)
             title_py = Label(panedpy, text="Python", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_py.place(x=360,y=20)
-            lbl_py = Label(panedpy, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_py = Label(panedpy, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_py.place(x=90,y=110)
-            txt_py = Text(panedpy, width=30, height=15, wrap="word")
-            txt_py.place(x=80,y=150)
+
+            txt_texto = Text(panedpy, width=90, height=15, wrap="word")
+            txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "Python":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://www.python.org/")
+
+            open_btn = Button(panedpy, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_py2 = Label(panedpy, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_py2.place(x=90,y=420)
 
@@ -769,10 +831,25 @@ def main_menu(usernumber):
             panedcss.place(x=0,y=0)
             title_css = Label(panedcss, text="CSS", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_css.place(x=390,y=20)
-            lbl_css = Label(panedcss, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_css = Label(panedcss, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_css.place(x=90,y=110)
-            txt_css = Text(panedcss, width=30, height=15, wrap="word")
-            txt_css.place(x=80,y=150)
+
+            txt_texto = Text(panedcss, width=90, height=15, wrap="word")
+            txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "CSS":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://www.w3schools.com/css/css_intro.asp")
+
+            open_btn = Button(panedcss, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_css2 = Label(panedcss, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_css2.place(x=90,y=420)
 
@@ -866,10 +943,25 @@ def main_menu(usernumber):
             panedgo.place(x=0,y=0)
             title_go = Label(panedgo, text="GO", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_go.place(x=400,y=20)
-            lbl_go = Label(panedgo, text="Challenge:", fg="blue", font=("Arial, 14"))
+            lbl_go = Label(panedgo, text="Description:", fg="blue", font=("Arial, 14"))
             lbl_go.place(x=90,y=110)
-            txt_go = Text(panedgo, width=30, height=15, wrap="word")
-            txt_go.place(x=80,y=150)
+
+            txt_texto = Text(panedgo, width=90, height=15, wrap="word")
+            txt_texto.place(x=80,y=150)
+
+            with open("data/info.txt", "r", encoding="UTF-8") as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "Go":
+                        txt_texto.insert("1.0", param[1])
+
+            #Button open
+            def link():
+                webbrowser.open_new_tab("https://go.dev/")
+
+            open_btn = Button(panedgo, text="OPEN COURSE", fg="blue", font=("Arial, 16"), command= link)
+            open_btn.place (x = 650,y = 450)
+
             lbl_go2 = Label(panedgo, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_go2.place(x=90,y=420)
             
