@@ -1,6 +1,6 @@
-Python;Tiago Ribeiro;10;
-CSS;Tiago Ribeiro;6;
-HTML;Tiago Ribeiro;6;
-C++;Tiago Ribeiro;8;
-Go;Tiago Ribeiro;5;
-JavaScript;Tiago Ribeiro;7;
+Python;Tiago Daniel;10;
+CSS;Tiago Daniel;5;
+HTML;Tiago Daniel;7;
+C++;Tiago Daniel;8;
+Go;Tiago Daniel;4;
+JavaScript;Tiago Daniel;7;

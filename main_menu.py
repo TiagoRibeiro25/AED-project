@@ -7,6 +7,8 @@ from tkinter import filedialog
 from time import strftime
 from tkinter import messagebox
 import webbrowser
+
+from pip import main
 import start_menu
 
 # Estrutura
@@ -94,7 +96,14 @@ def main_menu(usernumber):
             start_menu.start_window()
 
         def admin():
-            print('admin')
+            fechar_menu()
+            main_painel.destroy
+            fundo()
+            
+            #Botão voltar
+            back_btn = Button(main_painel, text = 'Main Page', font = ('Arial', 10), fg = 'black', relief='raised', background = '#b9b9b9', width=8, height=1, command=start)
+            back_btn.place (x = 20,y = 20)
+
 
         def settings():
             fechar_menu()
@@ -220,7 +229,21 @@ def main_menu(usernumber):
                     if new_name != var_user:
                         with open("data/utilizadores.txt", "w", encoding="UTF-8") as f: 
                             f.write(new_text)
+                            old_name =Dados[1] 
                             Dados[1] = new_name
+
+                        #Change name in rates.txt
+                        with open("data/rates.txt", "r") as f:
+                            newText=f.read().replace(old_name, new_name)
+                        with open("data/rates.txt", "w") as f:
+                            f.write(newText)
+
+                        #Change name in comments.txt
+                        with open("data/comments.txt", "r") as f:
+                            newText=f.read().replace(old_name, new_name)
+                        with open("data/comments.txt", "w") as f:
+                            f.write(newText)
+
 
 
             def verify_pw():
