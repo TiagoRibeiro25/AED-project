@@ -1,0 +1,6 @@
+Python;
+CSS;
+HTML;
+C++;Tiago Ribeiro: Curso muito bom;
+Go;
+JavaScript;Tiago Ribeiro: Primeiro comentário;Tiago Ribeiro: Segundo comentário;Tiago Ribeiro: Terceiro comentário;

@@ -380,7 +380,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedjs, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "JavaScript":
@@ -437,7 +437,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "JavaScript":
@@ -456,7 +456,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "JavaScript"
                     for line in f:
@@ -466,7 +466,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
@@ -493,7 +493,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedc, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "C++":
@@ -550,7 +550,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "C++":
@@ -569,7 +569,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "C++"
                     for line in f:
@@ -579,7 +579,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
@@ -605,7 +605,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedhtml, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "HTML":
@@ -662,7 +662,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "HTML":
@@ -681,7 +681,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "HTML"
                     for line in f:
@@ -691,7 +691,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
@@ -718,7 +718,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedpy, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "Python":
@@ -775,7 +775,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "Python":
@@ -794,7 +794,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "Python"
                     for line in f:
@@ -804,7 +804,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
@@ -830,7 +830,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedcss, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "CSS":
@@ -887,7 +887,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "CSS":
@@ -906,7 +906,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "CSS"
                     for line in f:
@@ -916,7 +916,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
@@ -942,7 +942,7 @@ def main_menu(usernumber):
             txt_texto = Text(panedgo, width=90, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
 
-            with open("data/info.txt", "r", encoding="UTF-8") as f:
+            with open("data/categorias.txt", "r", encoding="UTF-8") as f:
                 for line in f:
                     param = line.split(";")
                     if param[0] == "Go":
@@ -999,7 +999,7 @@ def main_menu(usernumber):
 
             #Ler os comentarios do ficheiro
             def ler():
-                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")       
                         if param[0] == "Go":
@@ -1018,7 +1018,7 @@ def main_menu(usernumber):
                 comment_txt = txt_add_cmt.get()
                 comment = Dados[1] + ": " + comment_txt   #Name: "comment";
 
-                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
                     new_text = ""
                     course_name = "Go"
                     for line in f:
@@ -1028,7 +1028,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
-                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
 
                 txt_cmt.delete("1.0", "end")
