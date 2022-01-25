@@ -476,7 +476,42 @@ def main_menu(usernumber):
 
             btn_post = Button(panedjs,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)
-            
+
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "JavaScript"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedjs, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "JavaScript":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedjs, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
         
         def windowC():
             window_cpro = Toplevel()
@@ -589,6 +624,43 @@ def main_menu(usernumber):
 
             btn_post = Button(panedc,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
+
+            
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "C++"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedc, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "C++":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedc, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
         
         def windowHTML():
             window_html = Toplevel()
@@ -701,6 +773,43 @@ def main_menu(usernumber):
 
             btn_post = Button(panedhtml,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
+
+            
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "HTML"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedhtml, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "HTML":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedhtml, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
             
             
         def windowPy():
@@ -815,6 +924,43 @@ def main_menu(usernumber):
             btn_post = Button(panedpy,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
 
+            
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "Python"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedpy, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "Python":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedpy, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
+
         def windowCSS():
             window_css = Toplevel()
             window_css.geometry("900x700+500+100")
@@ -926,6 +1072,43 @@ def main_menu(usernumber):
 
             btn_post = Button(panedcss,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
+
+            
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "CSS"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedcss, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "CSS":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedcss, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
         
         def windowGo():
             window_go = Toplevel()
@@ -1038,6 +1221,43 @@ def main_menu(usernumber):
 
             btn_post = Button(panedgo,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
+
+            
+            def rate():
+                info = Dados[1] + ";" + str(scale1.get())
+                with open("data/rates.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "Go"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = info + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/rates.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    rate_btn.configure(state=DISABLED)
+
+
+            #Rate
+            rate_btn = Button(panedgo, text="Rate", fg="blue", font=("Arial, 10"), command=rate)
+            rate_btn.place(x=825,y=37)
+
+            #In case the user did already vote in the past (can't vote again)
+            with open('data/rates.txt', 'r', encoding='UTF-8') as f:
+                for line in f:
+                    param = line.split(";")
+                    if param[0] == "Go":
+                        i = 1
+                        while i < len(param):
+                            if param[i] == Dados[1]:
+                                rate_btn.configure(state=DISABLED)
+                            i = i + 2
+
+            scale1 = Scale(panedgo, width=20, from_= 0, to= 10, orient="horizontal")
+            scale1.place(x=720,y=20)
+
         
         js = Button(panel1, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
         js.place (x = 50,y = 30)

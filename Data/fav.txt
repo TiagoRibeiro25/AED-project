@@ -1,6 +1,5 @@
 0;Python;CSS;HTML;C++;Go;JavaScript;
 1;Python;CSS;HTML;C++;Go;JavaScript;
 2;
-
 3;
 5;
