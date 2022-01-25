@@ -1,6 +1,3 @@
-from distutils import command
-from os import stat
-from sre_parse import State
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -45,7 +42,6 @@ def main_menu(usernumber):
     
     relogio_label = Label(painel_preto_cima,font=("calibri", 17), fg = 'white',background = "black")
     relogio_label.place(x=1050, y=8)
-
 
     #Imagens
     #menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
@@ -972,6 +968,7 @@ def main_menu(usernumber):
         goo = Button(panel1, image = go_img, relief='raised', bd=4, width=150, height=100, command=windowGo)
         goo.place (x = 350,y = 330)
 
+        #Search function
         def search():
             js.configure(state=DISABLED)
             c.configure(state=DISABLED)
@@ -988,30 +985,27 @@ def main_menu(usernumber):
                 pyth.configure(state=NORMAL)
                 css_tag.configure(state=NORMAL)
                 goo.configure(state=NORMAL)
-            elif result == "Python" or result == "python" or result == "PYTHON" or result == "py" or result == "Py" or result == "PY":
+            elif (result[0] == "P" and result[1] == "y") or (result[0] == "p" and result[1] == "y") or (result[0] == "P" and result[1] == "Y"):
                 pyth.configure(state=NORMAL)
-            elif result == "JavaScript" or result == "Javascript" or result == "javascript" or result == "JAVASCRIPT" or result == "Java" or result == "java" or result == "JAVA":
+            elif result[0] == "J" or result[0] == "j":
                 js.configure(state=NORMAL)
-            elif result == "HTML" or result == "html" or result == "Html" or result == "h" or result == "H" or result == "Ht" or result == "HT" or result == "ht":
+            elif (result[0] == "H" and result[1] == "m") or (result[0] == "H" and result[1] == "M") or (result[0] == "h" and result[1] == "m"):
                 html.configure(state=NORMAL)
             elif result == "Go" or result == "GO" or result == "go" or result == "G" or result == "g":
                 goo.configure(state=NORMAL)
             elif result == 'C' or result == 'c':
                 c.configure(state=NORMAL)
                 css_tag.configure(state=NORMAL)
-            elif result == "C+" or result == "c+" or result == "C++" or result == "c++":
+            elif ((result[0] == "C" or result[0] == "c" ) and result[1] == "+"):
                 c.configure(state=NORMAL)
-            elif result == "CSS" or result == "css" or result == "Css" or result == "CSs" or result == "CS" or result == "Cs" or result == "cs":
+            elif (result[0] == "C" or result[0] == "c") and (result[0] == "S" or result[0] == "s"):
                 css_tag.configure(state=NORMAL)
-
 
         #Search 
         search_box = Entry(main_painel, width = 30, background = 'white')
         search_btn =  Button(main_painel, text = "search", relief='flat', bd=1, font=("Arial, 7"), command= search)
         search_box.place(x = 1000, y = 30)
         search_btn.place(x = 1185, y =30)
-
-        
         
         def create():
             new = Toplevel()
@@ -1033,12 +1027,9 @@ def main_menu(usernumber):
             for i in lista:
                 lbox.insert(END, i)
             lbox.place(x=0,y=0)
-            
-
         
         btn_filter = Button(main_painel, text = "Favorites List", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=create)
         btn_filter.place (x = 970,y = 270)
-
 
         def rating():
             new2 = Toplevel()
@@ -1091,8 +1082,6 @@ def main_menu(usernumber):
         
         btn_rate = Button(main_painel, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
         btn_rate.place (x = 970,y = 470)
-
-
 
     btn_menu()
     fundo()
