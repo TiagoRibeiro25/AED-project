@@ -1,3 +1,5 @@
+from cgitb import text
+from os import remove
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -395,12 +397,11 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_js.configure(state=DISABLED)
+                    fav_js.configure(text="Remove from Favorites", command= remove)
 
             def remove_fav():
-                fav_js.configure(state=DISABLED)
+                fav_js.configure(text="Add to Favorites", command= add_fav)
         
-
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
                     for line in f:
                         param = line.split(";")
@@ -419,10 +420,6 @@ def main_menu(usernumber):
                             
                             fav_js.place(x=650,y=550)
 
-                            
-
-
-    
             txt_cmt = Text(panedjs,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
         
@@ -443,8 +440,43 @@ def main_menu(usernumber):
             lbl_c2.place(x=90,y=500)
             btn_c = Button(panedc,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_c.place(x=650,y=600)
-            fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_c.place(x=650,y=550)
+
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "C++"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_c.configure(text="Remove from Favorites", command= remove)
+
+            def remove_fav():
+                fav_c.configure(text="Add to Favorites", command= add_fav)
+        
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "C++":
+                                    fav_c = Button(panedc,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_c.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_c.place(x=650,y=550)
+
             txt_cmt = Text(panedc,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)    
         
@@ -465,8 +497,43 @@ def main_menu(usernumber):
             lbl_html2.place(x=90,y=500)
             btn_html = Button(panedhtml,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_html.place(x=650,y=600)
-            fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_html.place(x=650,y=550)
+
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "HTML"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_html.configure(text="Remove from Favorites", command= remove)
+
+            def remove_fav():
+                fav_html.configure(text="Add to Favorites", command= add_fav)
+        
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "HTML":
+                                    fav_html = Button(panedhtml,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_html.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_html.place(x=650,y=550)
+
             txt_cmt = Text(panedhtml,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
             
@@ -488,8 +555,43 @@ def main_menu(usernumber):
             lbl_py2.place(x=90,y=500)
             btn_py = Button(panedpy,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_py.place(x=650,y=600)
-            fav_py = Button(panedpy,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_py.place(x=650,y=550)
+
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "Python"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_py.configure(text="Remove from Favorites", command= remove)
+
+            def remove_fav():
+                fav_py.configure(text="Add to Favorites", command= add_fav)
+        
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "Python":
+                                    fav_py = Button(panedpy,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_py.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_py = Button(panedpy,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_py.place(x=650,y=550)
+
             txt_cmt = Text(panedpy,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
 
@@ -510,8 +612,43 @@ def main_menu(usernumber):
             lbl_css2.place(x=90,y=500)
             btn_css = Button(panedcss,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_css.place(x=650,y=600)
-            fav_css = Button(panedcss,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_css.place(x=650,y=550)
+
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "CSS"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_css.configure(text="Remove from Favorites", command= remove)
+
+            def remove_fav():
+                fav_css.configure(text="Add to Favorites", command= add_fav)
+        
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "CSS":
+                                    fav_css = Button(panedcss,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_css.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_css = Button(panedcss,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_css.place(x=650,y=550)
+
             txt_cmt = Text(panedcss,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
         
@@ -532,8 +669,43 @@ def main_menu(usernumber):
             lbl_go2.place(x=90,y=500)
             btn_go = Button(panedgo,text="Save", fg="blue", font=("Helvetica, 16"))
             btn_go.place(x=650,y=600)
-            fav_go = Button(panedgo,text="Add to Favorites", fg="blue", font=("Helvetica, 16"))
-            fav_go.place(x=650,y=550)
+            
+            def add_fav():
+                with open("data/fav.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    for line in f:
+                        user = line.split(";")
+                        if Dados[0] == user[0]:
+                            course_name = "Go"
+                            user[len(user)-1] = course_name + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/fav.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+                    fav_go.configure(text="Remove from Favorites", command= remove)
+
+            def remove_fav():
+                fav_go.configure(text="Add to Favorites", command= add_fav)
+        
+            with open('data/fav.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if Dados[0] == param[0]:
+                            i = 1
+                            while i < len(param)-1:
+                                if param[i] == "Go":
+                                    fav_go = Button(panedgo,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_go.place(x=650,y=550)
+                                    i = 99
+                                else:
+                                    i = i + 1
+
+                            if i != 99:        
+                                fav_go = Button(panedgo,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                            
+                            fav_go.place(x=650,y=550)
+
             txt_cmt = Text(panedgo,width=30, height=5, wrap='word')
             txt_cmt.place(x=80,y=550)
         
