@@ -1,5 +1,3 @@
-from cgitb import text
-from os import remove
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -373,13 +371,13 @@ def main_menu(usernumber):
             windowjs.resizable()
             panedjs = PanedWindow(windowjs, width=898, height=698, bd="8", relief="sunken")
             panedjs.place(x=0,y=0)
-            titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            titlejs = Label(panedjs, text="JavaScript", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             titlejs.place(x=320,y=20)
-            lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_js.place(x=90,y=110)
             txt_texto = Text(panedjs, width=30, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
-            lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_js2.place(x=90,y=420)
 
             def add_fav():
@@ -395,7 +393,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_js.configure(text="Remove from Favorites", command= remove)
+                    fav_js.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_js.configure(text="Add to Favorites", command= add_fav)
@@ -407,14 +405,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "JavaScript":
-                                    fav_js = Button(panedjs,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_js = Button(panedjs,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_js.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_js = Button(panedjs,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_js.place(x=650,y=550)
 
@@ -460,7 +458,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedjs,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedjs,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)
             
         
@@ -471,13 +469,13 @@ def main_menu(usernumber):
             window_cpro.resizable(0,0)
             panedc = PanedWindow(window_cpro, width=898, height=698, bd="8", relief="sunken")
             panedc.place(x=0,y=0)
-            titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            titlec = Label(panedc, text="C++", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             titlec.place(x=390,y=20)
-            lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_c.place(x=90,y=110)
             txt_c = Text(panedc, width=30, height=15, wrap="word")
             txt_c.place(x=80,y=150)
-            lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_c2.place(x=90,y=420)
 
             def add_fav():
@@ -493,7 +491,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_c.configure(text="Remove from Favorites", command= remove)
+                    fav_c.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_c.configure(text="Add to Favorites", command= add_fav)
@@ -505,14 +503,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "C++":
-                                    fav_c = Button(panedc,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_c = Button(panedc,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_c.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_c = Button(panedc,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_c.place(x=650,y=550)
 
@@ -558,7 +556,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedc,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedc,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
         
         def windowHTML():
@@ -568,13 +566,13 @@ def main_menu(usernumber):
             window_html.resizable(0,0)
             panedhtml = PanedWindow(window_html, width=898, height=698, bd="8", relief="sunken")
             panedhtml.place(x=0,y=0)
-            title_html = Label(panedhtml, text="HTML", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            title_html = Label(panedhtml, text="HTML", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_html.place(x=370,y=20)
-            lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_html.place(x=90,y=110)
             txt_html = Text(panedhtml, width=30, height=15, wrap="word")
             txt_html.place(x=80,y=150)
-            lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_html2.place(x=90,y=420)
 
             def add_fav():
@@ -590,7 +588,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_html.configure(text="Remove from Favorites", command= remove)
+                    fav_html.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_html.configure(text="Add to Favorites", command= add_fav)
@@ -602,14 +600,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "HTML":
-                                    fav_html = Button(panedhtml,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_html = Button(panedhtml,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_html.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_html = Button(panedhtml,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_html.place(x=650,y=550)
 
@@ -655,7 +653,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedhtml,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedhtml,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
             
             
@@ -666,13 +664,13 @@ def main_menu(usernumber):
             window_py.resizable(0,0)
             panedpy = PanedWindow(window_py, width=898, height=698, bd="8", relief="sunken")
             panedpy.place(x=0,y=0)
-            title_py = Label(panedpy, text="Python", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            title_py = Label(panedpy, text="Python", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_py.place(x=360,y=20)
-            lbl_py = Label(panedpy, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_py = Label(panedpy, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_py.place(x=90,y=110)
             txt_py = Text(panedpy, width=30, height=15, wrap="word")
             txt_py.place(x=80,y=150)
-            lbl_py2 = Label(panedpy, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_py2 = Label(panedpy, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_py2.place(x=90,y=420)
 
             def add_fav():
@@ -688,7 +686,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_py.configure(text="Remove from Favorites", command= remove)
+                    fav_py.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_py.configure(text="Add to Favorites", command= add_fav)
@@ -700,14 +698,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "Python":
-                                    fav_py = Button(panedpy,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_py = Button(panedpy,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_py.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_py = Button(panedpy,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_py = Button(panedpy,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_py.place(x=650,y=550)
 
@@ -753,7 +751,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedpy,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedpy,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
 
         def windowCSS():
@@ -763,13 +761,13 @@ def main_menu(usernumber):
             window_css.resizable(0,0)
             panedcss = PanedWindow(window_css, width=898, height=698, bd="8", relief="sunken")
             panedcss.place(x=0,y=0)
-            title_css = Label(panedcss, text="CSS", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            title_css = Label(panedcss, text="CSS", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_css.place(x=390,y=20)
-            lbl_css = Label(panedcss, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_css = Label(panedcss, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_css.place(x=90,y=110)
             txt_css = Text(panedcss, width=30, height=15, wrap="word")
             txt_css.place(x=80,y=150)
-            lbl_css2 = Label(panedcss, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_css2 = Label(panedcss, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_css2.place(x=90,y=420)
 
             def add_fav():
@@ -785,7 +783,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_css.configure(text="Remove from Favorites", command= remove)
+                    fav_css.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_css.configure(text="Add to Favorites", command= add_fav)
@@ -797,14 +795,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "CSS":
-                                    fav_css = Button(panedcss,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_css = Button(panedcss,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_css.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_css = Button(panedcss,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_css = Button(panedcss,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_css.place(x=650,y=550)
 
@@ -850,7 +848,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedcss,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedcss,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
         
         def windowGo():
@@ -860,13 +858,13 @@ def main_menu(usernumber):
             window_go.resizable(0,0)
             panedgo = PanedWindow(window_go, width=898, height=698, bd="8", relief="sunken")
             panedgo.place(x=0,y=0)
-            title_go = Label(panedgo, text="GO", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            title_go = Label(panedgo, text="GO", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             title_go.place(x=400,y=20)
-            lbl_go = Label(panedgo, text="Challenge:", fg="blue", font=("Helvetica, 14"))
+            lbl_go = Label(panedgo, text="Challenge:", fg="blue", font=("Arial, 14"))
             lbl_go.place(x=90,y=110)
             txt_go = Text(panedgo, width=30, height=15, wrap="word")
             txt_go.place(x=80,y=150)
-            lbl_go2 = Label(panedgo, text="Comments: ", fg="black", font=("Helvetica, 12"))
+            lbl_go2 = Label(panedgo, text="Comments: ", fg="black", font=("Arial, 12"))
             lbl_go2.place(x=90,y=420)
             
             def add_fav():
@@ -882,7 +880,7 @@ def main_menu(usernumber):
                             new_text = new_text + ";".join(user)
                 with open("data/fav.txt", "w", encoding="UTF-8") as f:
                     f.write(new_text)
-                    fav_go.configure(text="Remove from Favorites", command= remove)
+                    fav_go.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
                 fav_go.configure(text="Add to Favorites", command= add_fav)
@@ -894,14 +892,14 @@ def main_menu(usernumber):
                             i = 1
                             while i < len(param)-1:
                                 if param[i] == "Go":
-                                    fav_go = Button(panedgo,text="Remove from Favorites", fg="blue", font=("Helvetica, 16"), command= remove_fav)
+                                    fav_go = Button(panedgo,text="Remove from Favorites", fg="blue", font=("Arial, 16"), command= remove_fav)
                                     fav_go.place(x=650,y=550)
                                     i = 99
                                 else:
                                     i = i + 1
 
                             if i != 99:        
-                                fav_go = Button(panedgo,text="Add to Favorites", fg="blue", font=("Helvetica, 16"), command= add_fav)
+                                fav_go = Button(panedgo,text="Add to Favorites", fg="blue", font=("Arial, 16"), command= add_fav)
                             
                             fav_go.place(x=650,y=550)
 
@@ -947,7 +945,7 @@ def main_menu(usernumber):
 
                 
 
-            btn_post = Button(panedgo,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post = Button(panedgo,text="Post", fg="blue", font=("Arial, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)    
         
         js = Button(panel1, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
@@ -970,6 +968,12 @@ def main_menu(usernumber):
 
         goo = Button(panel1, image = go_img, relief='raised', bd=4, width=150, height=100, command=windowGo)
         goo.place (x = 350,y = 330)
+
+        #Search 
+        search_box = Entry(main_painel, width = 30, background = 'white')
+        search_btn =  Button(main_painel, text = "search", relief='flat', bd=1, font=("Arial, 7"))
+        search_box.place(x = 1000, y = 30)
+        search_btn.place(x = 1185, y =30)
 
         
         
@@ -1007,40 +1011,40 @@ def main_menu(usernumber):
             new2.resizable(0,0)
             paned2 = PanedWindow(new2, width=898, height=698, bd="8", relief="sunken")
             paned2.place(x=0,y=0)
-            lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Helvetica", 34))
+            lbl_title = Label(new2, text="Rate our Courses", fg="blue",bd= "8" ,relief="raised", font=("Arial", 34))
             lbl_title.place(x=270,y=20)
             # Label e scale js
-            lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_js = Label(new2, text = "JavaScript", fg="blue",bd="8", relief="raised", font=("Arial", 20))
             lbl_js.place(x=240,y=130)
             scale1 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
             scale1.place(x=560,y=120)
             #Label e scale c++
-            lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_c = Label(new2, text = "C++", fg="blue",bd="8", relief="raised", font=("Arial", 20))
             lbl_c.place(x=240,y=210)
             scale2 = Scale(new2, width=20, from_= 0, to= 10,orient="horizontal")
             scale2.place(x=560,y=200)
             # Label e scale html
-            lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_html = Label(new2, text = "HTML", fg="blue", bd="8", relief="raised", font=("Arial", 20))
             lbl_html.place(x=240,y=290)
             scale3 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
             scale3.place(x=560,y=280)
             # Label e scale py
-            lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_py = Label(new2, text = "Python", fg="blue", bd="8", relief="raised", font=("Arial", 20))
             lbl_py.place(x=240,y=370)      
             scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
             scale4.place(x=560,y=360)
             # Label e scale CSS
-            lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_css = Label(new2, text = "CSS", fg="blue", bd="8", relief="raised", font=("Arial", 20))
             lbl_css.place(x=240,y=450)      
             scale5 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
             scale5.place(x=560,y=440)
             # Label e scale Go
-            lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Helvetica", 20))
+            lbl_go = Label(new2, text = "Go", fg="blue", bd="8", relief="raised", font=("Arial", 20))
             lbl_go.place(x=240,y=530)      
             scale4 = Scale(new2, width=20, from_= 0, to= 10, orient="horizontal")
             scale4.place(x=560,y=520)
             # Botao save
-            btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Helvetica", 22))
+            btn_save = Button(new2, text="Save", fg="blue",relief="raised", bd="6",font=("Arial", 22))
             btn_save.place(x=730,y=620)
             
 
