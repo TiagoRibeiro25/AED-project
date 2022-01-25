@@ -377,12 +377,10 @@ def main_menu(usernumber):
             titlejs.place(x=320,y=20)
             lbl_js = Label(panedjs, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_js.place(x=90,y=110)
-            txt_texto = Text(panedjs, width=30, height=20, wrap="word")
+            txt_texto = Text(panedjs, width=30, height=15, wrap="word")
             txt_texto.place(x=80,y=150)
             lbl_js2 = Label(panedjs, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_js2.place(x=90,y=500)
-            btn_js = Button(panedjs,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_js.place(x=650,y=600)
+            lbl_js2.place(x=90,y=420)
 
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -420,8 +418,53 @@ def main_menu(usernumber):
                             
                             fav_js.place(x=650,y=550)
 
-            txt_cmt = Text(panedjs,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)
+            txt_cmt = Text(panedjs,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "JavaScript":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedjs, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "JavaScript"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedjs,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)
+            
+
+
         
         def windowC():
             window_cpro = Toplevel()
@@ -748,7 +791,6 @@ def main_menu(usernumber):
                         while i < len(param)-1:
                             lista.append(param[i])
                             i = i + 1
-                        print(lista)
             lbox = Listbox(paned1, height= 11, width=17, font="Arial, 18",selectmode="multiple", fg="blue")
             for i in lista:
                 lbox.insert(END, i)
