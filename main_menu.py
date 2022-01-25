@@ -448,7 +448,7 @@ def main_menu(usernumber):
                     for line in f:
                         user = line.split(";")
                         if user[0] == course_name:
-                            user[len(user)-1] = comment + ";"
+                            user[len(user)-1] = comment + ";" + "\n"
                             new_text = new_text + ";".join(user)
                         else:
                             new_text = new_text + ";".join(user)
@@ -463,8 +463,6 @@ def main_menu(usernumber):
             btn_post = Button(panedjs,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
             btn_post.place(x=650,y=600)
             
-
-
         
         def windowC():
             window_cpro = Toplevel()
@@ -477,12 +475,10 @@ def main_menu(usernumber):
             titlec.place(x=390,y=20)
             lbl_c = Label(panedc, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_c.place(x=90,y=110)
-            txt_c = Text(panedc, width=30, height=20, wrap="word")
+            txt_c = Text(panedc, width=30, height=15, wrap="word")
             txt_c.place(x=80,y=150)
             lbl_c2 = Label(panedc, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_c2.place(x=90,y=500)
-            btn_c = Button(panedc,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_c.place(x=650,y=600)
+            lbl_c2.place(x=90,y=420)
 
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -520,8 +516,50 @@ def main_menu(usernumber):
                             
                             fav_c.place(x=650,y=550)
 
-            txt_cmt = Text(panedc,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)    
+            txt_cmt = Text(panedc,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "C++":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedc, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "C++"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedc,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)    
         
         def windowHTML():
             window_html = Toplevel()
@@ -534,12 +572,10 @@ def main_menu(usernumber):
             title_html.place(x=370,y=20)
             lbl_html = Label(panedhtml, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_html.place(x=90,y=110)
-            txt_html = Text(panedhtml, width=30, height=20, wrap="word")
+            txt_html = Text(panedhtml, width=30, height=15, wrap="word")
             txt_html.place(x=80,y=150)
             lbl_html2 = Label(panedhtml, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_html2.place(x=90,y=500)
-            btn_html = Button(panedhtml,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_html.place(x=650,y=600)
+            lbl_html2.place(x=90,y=420)
 
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -577,8 +613,50 @@ def main_menu(usernumber):
                             
                             fav_html.place(x=650,y=550)
 
-            txt_cmt = Text(panedhtml,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)
+            txt_cmt = Text(panedhtml,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "HTML":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedhtml, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "HTML"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedhtml,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)    
             
             
         def windowPy():
@@ -592,12 +670,10 @@ def main_menu(usernumber):
             title_py.place(x=360,y=20)
             lbl_py = Label(panedpy, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_py.place(x=90,y=110)
-            txt_py = Text(panedpy, width=30, height=20, wrap="word")
+            txt_py = Text(panedpy, width=30, height=15, wrap="word")
             txt_py.place(x=80,y=150)
             lbl_py2 = Label(panedpy, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_py2.place(x=90,y=500)
-            btn_py = Button(panedpy,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_py.place(x=650,y=600)
+            lbl_py2.place(x=90,y=420)
 
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -635,8 +711,50 @@ def main_menu(usernumber):
                             
                             fav_py.place(x=650,y=550)
 
-            txt_cmt = Text(panedpy,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)
+            txt_cmt = Text(panedpy,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "Python":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedpy, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "Python"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedpy,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)    
 
         def windowCSS():
             window_css = Toplevel()
@@ -649,12 +767,10 @@ def main_menu(usernumber):
             title_css.place(x=390,y=20)
             lbl_css = Label(panedcss, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_css.place(x=90,y=110)
-            txt_css = Text(panedcss, width=30, height=20, wrap="word")
+            txt_css = Text(panedcss, width=30, height=15, wrap="word")
             txt_css.place(x=80,y=150)
             lbl_css2 = Label(panedcss, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_css2.place(x=90,y=500)
-            btn_css = Button(panedcss,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_css.place(x=650,y=600)
+            lbl_css2.place(x=90,y=420)
 
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -692,8 +808,50 @@ def main_menu(usernumber):
                             
                             fav_css.place(x=650,y=550)
 
-            txt_cmt = Text(panedcss,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)
+            txt_cmt = Text(panedcss,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "CSS":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedcss, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "CSS"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedcss,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)    
         
         def windowGo():
             window_go = Toplevel()
@@ -706,12 +864,10 @@ def main_menu(usernumber):
             title_go.place(x=400,y=20)
             lbl_go = Label(panedgo, text="Challenge:", fg="blue", font=("Helvetica, 14"))
             lbl_go.place(x=90,y=110)
-            txt_go = Text(panedgo, width=30, height=20, wrap="word")
+            txt_go = Text(panedgo, width=30, height=15, wrap="word")
             txt_go.place(x=80,y=150)
             lbl_go2 = Label(panedgo, text="Comments: ", fg="black", font=("Helvetica, 12"))
-            lbl_go2.place(x=90,y=500)
-            btn_go = Button(panedgo,text="Save", fg="blue", font=("Helvetica, 16"))
-            btn_go.place(x=650,y=600)
+            lbl_go2.place(x=90,y=420)
             
             def add_fav():
                 with open("data/fav.txt", "r", encoding="UTF-8") as f:
@@ -749,8 +905,50 @@ def main_menu(usernumber):
                             
                             fav_go.place(x=650,y=550)
 
-            txt_cmt = Text(panedgo,width=30, height=5, wrap='word')
-            txt_cmt.place(x=80,y=550)
+            txt_cmt = Text(panedgo,width=65, height=8, wrap='word')
+            txt_cmt.place(x=80,y=450)
+
+            #Ler os comentarios do ficheiro
+            def ler():
+                with open('data/comments.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")       
+                        if param[0] == "Go":
+                            i = 1
+                            while i < len(param):
+                                txt_cmt.insert("1.0", param[i] + "\n")
+                                i = i + 1
+            ler()
+
+            #Add comment
+            txt_add_cmt = Entry(panedgo, width = 87, background = 'white')
+            txt_add_cmt.place(x = 80, y = 605)
+
+
+            def post_cmt():
+                comment_txt = txt_add_cmt.get()
+                comment = Dados[1] + ": " + comment_txt   #Name: "comment";
+
+                with open("data/comments.txt", "r", encoding="UTF-8") as f:
+                    new_text = ""
+                    course_name = "Go"
+                    for line in f:
+                        user = line.split(";")
+                        if user[0] == course_name:
+                            user[len(user)-1] = comment + ";" + "\n"
+                            new_text = new_text + ";".join(user)
+                        else:
+                            new_text = new_text + ";".join(user)
+                with open("data/comments.txt", "w", encoding="UTF-8") as f:
+                    f.write(new_text)
+
+                txt_cmt.delete("1.0", "end")
+                ler()   #Update comment box
+
+                
+
+            btn_post = Button(panedgo,text="Post", fg="blue", font=("Helvetica, 16"), command=post_cmt)
+            btn_post.place(x=650,y=600)    
         
         js = Button(panel1, image = js_img, relief='raised', bd=4, width=150, height=100, command= windowScript)
         js.place (x = 50,y = 30)
