@@ -1,3 +1,6 @@
+from distutils import command
+from os import stat
+from sre_parse import State
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -969,9 +972,42 @@ def main_menu(usernumber):
         goo = Button(panel1, image = go_img, relief='raised', bd=4, width=150, height=100, command=windowGo)
         goo.place (x = 350,y = 330)
 
+        def search():
+            js.configure(state=DISABLED)
+            c.configure(state=DISABLED)
+            html.configure(state=DISABLED)
+            pyth.configure(state=DISABLED)
+            css_tag.configure(state=DISABLED)
+            goo.configure(state=DISABLED)
+
+            result = search_box.get()
+            if result.count(' ') == len(result):
+                js.configure(state=NORMAL)
+                c.configure(state=NORMAL)
+                html.configure(state=NORMAL)
+                pyth.configure(state=NORMAL)
+                css_tag.configure(state=NORMAL)
+                goo.configure(state=NORMAL)
+            elif result == "Python" or result == "python" or result == "PYTHON" or result == "py" or result == "Py" or result == "PY":
+                pyth.configure(state=NORMAL)
+            elif result == "JavaScript" or result == "Javascript" or result == "javascript" or result == "JAVASCRIPT" or result == "Java" or result == "java" or result == "JAVA":
+                js.configure(state=NORMAL)
+            elif result == "HTML" or result == "html" or result == "Html" or result == "h" or result == "H" or result == "Ht" or result == "HT" or result == "ht":
+                html.configure(state=NORMAL)
+            elif result == "Go" or result == "GO" or result == "go" or result == "G" or result == "g":
+                goo.configure(state=NORMAL)
+            elif result == 'C' or result == 'c':
+                c.configure(state=NORMAL)
+                css_tag.configure(state=NORMAL)
+            elif result == "C+" or result == "c+" or result == "C++" or result == "c++":
+                c.configure(state=NORMAL)
+            elif result == "CSS" or result == "css" or result == "Css" or result == "CSs" or result == "CS" or result == "Cs" or result == "cs":
+                css_tag.configure(state=NORMAL)
+
+
         #Search 
         search_box = Entry(main_painel, width = 30, background = 'white')
-        search_btn =  Button(main_painel, text = "search", relief='flat', bd=1, font=("Arial, 7"))
+        search_btn =  Button(main_painel, text = "search", relief='flat', bd=1, font=("Arial, 7"), command= search)
         search_box.place(x = 1000, y = 30)
         search_btn.place(x = 1185, y =30)
 
