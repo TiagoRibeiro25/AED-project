@@ -1,2 +1,2 @@
 0;Python;CSS;HTML;C++;Go;JavaScript;
-1;JavaScript;Python;CSS;C++;
+1;Python;CSS;C++;

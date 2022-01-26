@@ -1,3 +1,5 @@
+from dataclasses import replace
+from os import remove
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -534,6 +536,16 @@ def main_menu(usernumber):
                     fav_js.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("JavaScript;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_js.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
@@ -682,6 +694,16 @@ def main_menu(usernumber):
                     fav_c.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("C++;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_c.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
@@ -831,6 +853,16 @@ def main_menu(usernumber):
                     fav_html.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("HTML;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_html.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
@@ -981,6 +1013,16 @@ def main_menu(usernumber):
                     fav_py.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("Python;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_py.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
@@ -1130,6 +1172,16 @@ def main_menu(usernumber):
                     fav_css.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("CSS;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_css.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
@@ -1279,6 +1331,16 @@ def main_menu(usernumber):
                     fav_go.configure(text="Remove from Favorites", command= remove_fav)
 
             def remove_fav():
+
+                with open('data/fav.txt', 'r', encoding='utf-8') as file:
+                    data = file.readlines()
+                print(data[int(Dados[0])])
+                new_info = (data[int(Dados[0])]).replace("Go;", "")
+                data[int(Dados[0])] = new_info
+                print(data)
+                with open('data/fav.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(data)
+
                 fav_go.configure(text="Add to Favorites", command= add_fav)
         
             with open('data/fav.txt', 'r', encoding='UTF-8') as f:
