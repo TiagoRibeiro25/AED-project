@@ -1,4 +1,6 @@
 from distutils import command
+from hashlib import new
+from inspect import CORO_SUSPENDED
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
@@ -105,11 +107,103 @@ def main_menu(usernumber):
             back_btn.place (x = 20,y = 20)
 
             painel = PanedWindow(main_painel, width = 1000, height= 510, background='black')
-            painel.place(x = 100, y = 110)
+            painel.place(x = 120, y = 110)
+
+            change_info_lbl = Label(painel, text = 'Change Course Description', fg='white', font = ('Arial', 13), background='black')
+            change_info_lbl.place(x = 20, y = 8)
+
+            def view_desc():
+                course_desc.delete("1.0", "end")
+                with open('data/categorias.txt', 'r', encoding='UTF-8') as f:
+                    for line in f:
+                        param = line.split(";")
+                        if param[0] == course_selected:
+                            course_desc.insert("1.0", param[1])
+            
+            def reset_btns():
+                Python_btn.configure(state=NORMAL)
+                CSS_btn.configure(state=NORMAL)
+                HTML_btn.configure(state=NORMAL)
+                C_btn.configure(state=NORMAL)
+                Go_btn.configure(state=NORMAL)
+                JavaScript_btn.configure(state=NORMAL)
+
+            def Py():
+                global course_selected
+                course_selected = "Python"
+                reset_btns()
+                Python_btn.configure(state= DISABLED)
+                view_desc()
+            def CSS():
+                global course_selected
+                course_selected = "CSS"
+                reset_btns()
+                CSS_btn.configure(state= DISABLED)
+                view_desc()
+            def HTML():
+                global course_selected
+                course_selected = "HTML"
+                reset_btns()
+                HTML_btn.configure(state= DISABLED)
+                view_desc()
+            def C():
+                global course_selected
+                course_selected = "C++"
+                reset_btns()
+                C_btn.configure(state= DISABLED)
+                view_desc()
+            def Go():
+                global course_selected
+                course_selected = "Go"
+                reset_btns()
+                Go_btn.configure(state= DISABLED)
+                view_desc()
+            def JS():
+                global course_selected
+                course_selected = "JavaScript"
+                reset_btns()
+                JavaScript_btn.configure(state= DISABLED)
+                view_desc()
+            
+            #Box text 1
+            course_desc = Text(painel,width=65, height=8, wrap='word')
+            course_desc.place(x=25,y=130)
+
+            global course_selected
+            course_selected = ""
+
+            Python_btn = Button(painel, text = 'Python', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=Py)
+            CSS_btn = Button(painel, text = 'CSS', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=CSS)
+            HTML_btn = Button(painel, text = 'HTML', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=HTML)
+            C_btn = Button(painel, text = 'C++', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=C)
+            Go_btn = Button(painel, text = 'Go', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=Go)
+            JavaScript_btn = Button(painel, text = 'JavaScript', font = ('Arial', 10), fg = 'black', relief='flat', background = 'white', command=JS)
+
+            Py() #selected by default
+
+            Python_btn.place(x=85, y = 30)
+            CSS_btn.place(x=25, y = 30)
+            HTML_btn.place(x=25, y = 90)
+            C_btn.place(x=25, y = 60)
+            Go_btn.place(x=85, y = 60)
+            JavaScript_btn.place(x=85, y = 90)
+
+            def change_desc():
+                new_desc = course_selected + ";" + course_desc_new.get("1.0", "end-1c")
+                current_desc = course_selected + ";" + course_desc.get("1.0", "end-2c")
+                
+                with open("data/categorias.txt", "r", encoding="UTF-8") as f:
+                    newText=f.read().replace(current_desc, new_desc)
+                with open("data/categorias.txt", "w", encoding="UTF-8") as f:
+                    f.write(newText)
+                view_desc()
 
 
-
-
+            #Box text 2
+            course_desc_new = Text(painel,width=65, height=8, wrap='word')
+            course_desc_new.place(x=25,y=350)
+            course_desc_new_btn = Button(painel, text = 'Change\nDescription', font = ('Arial', 13), fg = 'black', relief='flat', background = 'white', command=change_desc)
+            course_desc_new_btn.place (x = 560, y = 390)
 
 
 
