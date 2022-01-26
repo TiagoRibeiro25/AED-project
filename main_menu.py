@@ -1574,8 +1574,11 @@ def main_menu(usernumber):
         btn_rate = Button(main_painel, text = "Most Rated", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command= rating)
         btn_rate.place (x = 970,y = 370)
 
+
+        def notifications():
+            messagebox.showerror(title="Notifications - status", message="You have no notifications!")
         
-        btn_rate = Button(main_painel, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command="noaction")
+        btn_rate = Button(main_painel, text = "Notifications", font = ('Arial, 18'),width=10, height=2, fg = 'blue', relief='flat', background = 'white', command=notifications)
         btn_rate.place (x = 970,y = 470)
 
         canvas_main = Canvas(main_painel, width = 343, height = 200, background='#b9b9b9')
