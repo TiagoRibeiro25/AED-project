@@ -1,6 +1,3 @@
-from distutils import command
-from hashlib import new
-from inspect import CORO_SUSPENDED
 from tkinter import *
 from tkinter.tix import Tree
 from PIL import ImageTk, Image
