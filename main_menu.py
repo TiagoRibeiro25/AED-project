@@ -44,7 +44,7 @@ def main_menu(usernumber):
         relogio_label.after(500, clock)
     
     relogio_label = Label(painel_preto_cima,font=("calibri", 17), fg = 'white',background = "black")
-    relogio_label.place(x=1050, y=8)
+    relogio_label.place(x=1150, y=8)
 
     #Imagens
     #menu_abrir = PhotoImage(file = '/home/xnm/Documents/Algoritmia_Estrutura_de_Dados/Projecto/png/button.png')
